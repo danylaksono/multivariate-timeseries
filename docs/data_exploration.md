@@ -37,73 +37,6 @@ const scenarios = await FileAttachment(
 display(Inputs.table(scenarios));
 ```
 
-### Inspecting the data
-
-Here is all the data visualised using arrow
-
-```js
-const selectLSOA = view(
-  Inputs.select(
-    scenarios.map((d) => d.lsoa),
-    {
-      value: "E01017987",
-      label: "LSOA",
-      sort: true,
-      unique: true,
-    }
-  )
-);
-```
-
-```sql id=byLSOA
-SELECT
-  budget,
-  lsoa,
-  year,
-  technology,
-  SUM(material_cost) AS total_material_cost,
-  SUM(labour_cost) AS total_labour_cost,
-  SUM(material_cost + labour_cost) AS total_cost,
-FROM scenariosdb
-where lsoa = ${selectLSOA}
-GROUP BY budget, year, lsoa, technology
-```
-
-```js
-// Inputs.table(byLSOA);
-```
-
-```js
-display(
-  Plot.plot({
-    width: width,
-    height: 500,
-    color: { legend: true },
-    marginLeft: 80,
-    marginRight: 80,
-    facet: { data: byLSOA, y: "technology" },
-    x: {
-      // label: "Year",
-      tickFormat: (d) => d.toString(),
-    },
-    y: {
-      grid: true,
-      transform: (d) => d / 1000,
-      label: "Cost (thousand)",
-    },
-    marks: [
-      Plot.barY(byLSOA, {
-        x: "year",
-        y: "total_cost",
-        fill: "budget",
-        tip: true,
-      }),
-      Plot.ruleY([0]),
-    ],
-  })
-);
-```
-
 ### Group by Budgets
 
 The main variable to display is the **budget**, which represent each scenario's budget over time. We can see for example how the progression of one LSOA (Local Super Output Area) budget looks like over the years:
@@ -180,111 +113,7 @@ display(
 
 ### Group by Technology
 
-```js
-const groupbyTechnology = Object.values(
-  scenarios.reduce((acc, obj) => {
-    let key = `${obj.budget}-${obj.lsoa}-${obj.year}-${obj.technology}`;
-    if (!acc[key]) {
-      acc[key] = {
-        budget: obj.budget,
-        lsoa: obj.lsoa,
-        year: obj.year,
-        technology: obj.technology,
-        total_material_cost: 0,
-        total_labour_cost: 0,
-        total_cost: 0,
-      };
-    }
-    acc[key].total_material_cost += obj.material_cost;
-    acc[key].total_labour_cost += obj.labour_cost;
-    acc[key].total_cost += obj.material_cost + obj.labour_cost;
-    return acc;
-  }, {})
-);
-display(groupbyTechnology);
-```
-
-```js
-// const grouped = d3.group(
-//   scenarios,
-//   (d) => d.budget,
-//   (d) => d.lsoa,
-//   (d) => d.year,
-//   (d) => d.technology
-// );
-
-// const nested = Array.from(grouped, ([budget, lsoas]) => ({
-//   budget,
-//   lsoas: Array.from(lsoas, ([lsoa, years]) => ({
-//     lsoa,
-//     years: Array.from(years, ([year, technologies]) => ({
-//       year,
-//       technologies: Array.from(technologies, ([technology, data]) => ({
-//         technology,
-//         total_material_cost: d3.sum(data, (d) => d.material_cost),
-//         total_labour_cost: d3.sum(data, (d) => d.labour_cost),
-//         total_cost: d3.sum(data, (d) => d.material_cost + d.labour_cost),
-//       })),
-//     })),
-//   })),
-// }));
-
-// const result2 = Array.from(grouped, ([budget, lsoaMap]) =>
-//   Array.from(lsoaMap, ([lsoa, yearMap]) =>
-//     Array.from(yearMap, ([year, techMap]) =>
-//       Array.from(techMap, ([technology, data]) => ({
-//         budget,
-//         lsoa,
-//         year,
-//         technology,
-//         total_material_cost: d3.sum(data, (d) => d.material_cost),
-//         total_labour_cost: d3.sum(data, (d) => d.labour_cost),
-//         total_cost: d3.sum(data, (d) => d.material_cost + d.labour_cost),
-//       }))
-//     ).flat()
-//   ).flat()
-// ).flat();
-
-const filteredScenario = d3.filter(
-  scenarios,
-  (d) =>
-    (d.material_cost !== null && d.labour_cost !== null) ||
-    d.hasOwnProperty("year")
-);
-
-// const grouped = d3.rollup(
-//   filteredScenario,
-//   (v) => d3.sum(v, (d) => d.material_cost || 0), // Handle null or empty values
-//   (v) => d3.sum(v, (d) => d.labour_cost || 0), // Handle null or empty values
-//   (d) => d.budget,
-//   (d) => d.lsoa,
-//   (d) => d.year,
-//   (d) => d.technology
-// );
-
-// const result2 = Array.from(grouped, ([budget, lsoaMap]) =>
-//   Array.from(lsoaMap, ([lsoa, yearMap]) =>
-//     Array.from(yearMap, ([year, techMap]) =>
-//       Array.from(techMap, ([technology, values]) => {
-//         const [total_material_cost, total_labour_cost] = Array.isArray(values)
-//           ? values
-//           : [0, 0];
-//         return {
-//           budget,
-//           lsoa,
-//           year,
-//           technology,
-//           total_material_cost,
-//           total_labour_cost,
-//           total_cost: total_material_cost + total_labour_cost,
-//         };
-//       })
-//     ).flat()
-//   ).flat()
-// ).flat();
-
-display(filteredScenario);
-```
+Here is all the data visualised using arrow
 
 ```js
 const selectCost2 = view(
@@ -307,64 +136,48 @@ const selectLSOA2 = view(
     }
   )
 );
+```
 
-// const selectTechnology = view(
-//   Inputs.select(
-//     scenarios.map((d) => d.technology),
-//     {
-//       value: "E01017987",
-//       label: "Technology",
-//       sort: true,
-//       unique: true,
-//     }
-//   )
-// );
+```sql id=byLSOA
+SELECT
+  budget,
+  lsoa,
+  year,
+  technology,
+  SUM(material_cost) AS total_material_cost,
+  SUM(labour_cost) AS total_labour_cost,
+  SUM(material_cost + labour_cost) AS total_cost,
+FROM scenariosdb
+where lsoa = ${selectLSOA2}
+GROUP BY budget, year, lsoa, technology
 ```
 
 ```js
-const bands = 7;
-const step = d3.max(alldata, (d) => d.total_cost) / bands;
-
 display(
   Plot.plot({
-    // height: 720,
     width: width,
-    axis: null,
-    y: { domain: [0, step] },
+    height: 500,
     color: { legend: true },
-    // color: { scheme: "YlGnBu" },
-    facet: { data: alldata, y: "technology" },
+    marginLeft: 80,
+    marginRight: 80,
+    facet: { data: byLSOA, y: "technology" },
+    x: {
+      // label: "Year",
+      tickFormat: (d) => d.toString(),
+    },
+    y: {
+      grid: true,
+      transform: (d) => d / 1000,
+      label: "Cost (thousand)",
+    },
     marks: [
-      // d3.range(bands).map((i) =>
-      //   Plot.areaY(groupbyTechnology, {
-      //     x: "year",
-      //     y: (d) => d.total_cost - i * step,
-      //     fill: i,
-      //     clip: true,
-      //   })
-      // ),
-
-      Plot.lineY(
-        alldata, //.filter((d) => d.lsoa === selectLSOA2),
-        {
-          x: "year",
-          y: selectCost2,
-          sort: "year",
-          stroke: "budget",
-          marker: true,
-          tip: true,
-        }
-      ),
-      Plot.text(
-        alldata,
-        Plot.selectFirst({
-          text: "technology",
-          frameAnchor: "top-left",
-          dx: 6,
-          dy: 6,
-        })
-      ),
-      Plot.frame(),
+      Plot.barY(byLSOA, {
+        x: "year",
+        y: selectCost2, //"total_cost",
+        fill: "budget",
+        tip: true,
+      }),
+      Plot.ruleY([0]),
     ],
   })
 );
@@ -372,10 +185,10 @@ display(
 
 ## Glyph Designs
 
-### Small multiples
+test canvas
 
 <figure style="max-width: 100%;">
-  <canvas id="glyph1" width="960" height="400"></canvas>
+  <canvas id="flower" width="400" height="400"></canvas>
 </figure>
 
 ```js
@@ -421,9 +234,9 @@ function drawCascadingPetal(ctx, length, angle, color1, color2) {
 // draw!
 
 {
-  const canvas = document.querySelector("#glyph1");
+  const canvas = document.querySelector("#flower");
   const ctx = canvas.getContext("2d");
-  canvas.width = width;
+  // canvas.width = width;
   ctx.fillStyle = "lightgrey";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -447,6 +260,110 @@ function drawCascadingPetal(ctx, length, angle, color1, color2) {
 }
 ```
 
+### Small multiples
+
+<figure style="max-width: 100%;">
+  <canvas id="glyph1" width="300" height="300"></canvas>
+</figure>
+
+```js
+// draw function here
+
+// draw!
+{
+  const canvas = document.querySelector("#glyph1");
+  const ctx = canvas.getContext("2d");
+  // canvas.width = width;
+  ctx.fillStyle = "lightgrey";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const radius = canvas.width / 2;
+  const numSectors = 3;
+  const sectorAngle = (Math.PI * 2) / numSectors;
+
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+
+  for (let i = 0; i < numSectors; i++) {
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(radius, 0);
+    ctx.arc(0, 0, radius, 0, sectorAngle);
+    ctx.closePath();
+    ctx.fillStyle = `hsl(${(i / numSectors) * 360}, 50%, 50%)`;
+    ctx.fill();
+    ctx.rotate(sectorAngle);
+  }
+}
+```
+
 ### Nightingale chart
 
+<figure style="max-width: 100%;">
+  <canvas id="glyph2" width="300" height="300"></canvas>
+</figure>
+
+```js
+// draw function here
+
+// draw!
+{
+  const canvas = document.querySelector("#glyph2");
+  const ctx = canvas.getContext("2d");
+  // canvas.width = width;
+  ctx.fillStyle = "lightgrey";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const radius = canvas.width / 2;
+  const numSectors = 3;
+  const sectorAngle = (Math.PI * 2) / numSectors;
+
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+
+  for (let i = 0; i < numSectors; i++) {
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(radius, 0);
+    ctx.arc(0, 0, radius, 0, sectorAngle);
+    ctx.closePath();
+    ctx.fillStyle = `hsl(${(i / numSectors) * 360}, 50%, 50%)`;
+    ctx.fill();
+    ctx.rotate(sectorAngle);
+  }
+}
+```
+
 ### Radial Barchart
+
+<figure style="max-width: 100%;">
+  <canvas id="glyph3" width="300" height="300"></canvas>
+</figure>
+
+```js
+// draw function here
+
+// draw!
+{
+  const canvas = document.querySelector("#glyph3");
+  const ctx = canvas.getContext("2d");
+  // canvas.width = width;
+  ctx.fillStyle = "lightgrey";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const radius = canvas.width / 2;
+  const numSectors = 3;
+  const sectorAngle = (Math.PI * 2) / numSectors;
+
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+
+  for (let i = 0; i < numSectors; i++) {
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(radius, 0);
+    ctx.arc(0, 0, radius, 0, sectorAngle);
+    ctx.closePath();
+    ctx.fillStyle = `hsl(${(i / numSectors) * 360}, 50%, 50%)`;
+    ctx.fill();
+    ctx.rotate(sectorAngle);
+  }
+}
+```
