@@ -1,11 +1,12 @@
 ---
 title: Data Exploration
 sidebar: false
+toc: true
 sql:
   scenariosdb: ./data/formatted_cbe_scenarios.csv
 ---
 
-```sql id=alldata display
+```sql id=alldata
 SELECT
 budget,
 lsoa,
@@ -20,7 +21,11 @@ GROUP BY budget, year, lsoa, technology
 
 # Data Exploration
 
-Before going through the glyph design, we'll explore the data to see what it contains, how many variables, etc. The following displays all the data:
+Before going through the glyph design, we'll explore the data to see what it contains, how many variables, etc.
+
+## Exploratory data analysis
+
+The following displays all the data:
 
 ```js
 const scenarios = await FileAttachment(
@@ -30,6 +35,73 @@ const scenarios = await FileAttachment(
 });
 
 display(Inputs.table(scenarios));
+```
+
+### Inspecting the data
+
+Here is all the data visualised using arrow
+
+```js
+const selectLSOA = view(
+  Inputs.select(
+    scenarios.map((d) => d.lsoa),
+    {
+      value: "E01017987",
+      label: "LSOA",
+      sort: true,
+      unique: true,
+    }
+  )
+);
+```
+
+```sql id=byLSOA
+SELECT
+  budget,
+  lsoa,
+  year,
+  technology,
+  SUM(material_cost) AS total_material_cost,
+  SUM(labour_cost) AS total_labour_cost,
+  SUM(material_cost + labour_cost) AS total_cost,
+FROM scenariosdb
+where lsoa = ${selectLSOA}
+GROUP BY budget, year, lsoa, technology
+```
+
+```js
+// Inputs.table(byLSOA);
+```
+
+```js
+display(
+  Plot.plot({
+    width: width,
+    height: 500,
+    color: { legend: true },
+    marginLeft: 80,
+    marginRight: 80,
+    facet: { data: byLSOA, y: "technology" },
+    x: {
+      // label: "Year",
+      tickFormat: (d) => d.toString(),
+    },
+    y: {
+      grid: true,
+      transform: (d) => d / 1000,
+      label: "Cost (thousand)",
+    },
+    marks: [
+      Plot.barY(byLSOA, {
+        x: "year",
+        y: "total_cost",
+        fill: "budget",
+        tip: true,
+      }),
+      Plot.ruleY([0]),
+    ],
+  })
+);
 ```
 
 ### Group by Budgets
@@ -251,7 +323,7 @@ const selectLSOA2 = view(
 
 ```js
 const bands = 7;
-const step = d3.max(result2, (d) => d.total_cost) / bands;
+const step = d3.max(alldata, (d) => d.total_cost) / bands;
 
 display(
   Plot.plot({
@@ -261,7 +333,7 @@ display(
     y: { domain: [0, step] },
     color: { legend: true },
     // color: { scheme: "YlGnBu" },
-    facet: { data: result2, y: "technology" },
+    facet: { data: alldata, y: "technology" },
     marks: [
       // d3.range(bands).map((i) =>
       //   Plot.areaY(groupbyTechnology, {
@@ -273,7 +345,7 @@ display(
       // ),
 
       Plot.lineY(
-        result2.filter((d) => d.lsoa === selectLSOA2),
+        alldata, //.filter((d) => d.lsoa === selectLSOA2),
         {
           x: "year",
           y: selectCost2,
@@ -284,7 +356,7 @@ display(
         }
       ),
       Plot.text(
-        result2,
+        alldata,
         Plot.selectFirst({
           text: "technology",
           frameAnchor: "top-left",
@@ -298,9 +370,9 @@ display(
 );
 ```
 
----
-
 ## Glyph Designs
+
+### Small multiples
 
 <figure style="max-width: 100%;">
   <canvas id="glyph1" width="960" height="400"></canvas>
@@ -374,3 +446,7 @@ function drawCascadingPetal(ctx, length, angle, color1, color2) {
   ctx.fill();
 }
 ```
+
+### Nightingale chart
+
+### Radial Barchart
