@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Data Exploration | Multivariate Timeseries</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/duckdb.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.14/_esm.js">
+<link rel="modulepreload" href="./_npm/@duckdb/duckdb-wasm@1.28.0/_esm.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/apache-arrow@15.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
+<link rel="modulepreload" href="./_npm/tslib@2.6.2/_esm.js">
+<link rel="modulepreload" href="./_npm/flatbuffers@23.5.26/_esm.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+import {registerFile, FileAttachment} from "./_observablehq/stdlib.js";
+import {registerTable} from "./_observablehq/stdlib/duckdb.js";
+
+registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.d79aae05.csv","lastModified":1713526056648});
+registerTable("scenariosdb", FileAttachment("./data/formatted_cbe_scenarios.csv"));
+
+define({id: "7ca53046", inputs: ["sql"], outputs: ["alldata"], body: async (sql) => {
+const alldata = await sql`SELECT
+budget,
+lsoa,
+year,
+technology,
+SUM(material_cost) AS total_material_cost,
+SUM(labour_cost) AS total_labour_cost,
+SUM(material_cost + labour_cost) AS total_cost,
+FROM scenariosdb
+GROUP BY budget, year, lsoa, technology`;
+return {alldata};
+}});
+
+define({id: "65d9bc17", inputs: ["FileAttachment","display","Inputs"], outputs: ["scenarios"], body: async (FileAttachment,display,Inputs) => {
+const scenarios = await FileAttachment(
+  "./data/formatted_cbe_scenarios.csv"
+).csv({
+  typed: true,
+});
+
+display(Inputs.table(scenarios));
+return {scenarios};
+}});
+
+define({id: "23fafb29", inputs: ["view","Inputs","scenarios"], outputs: ["selectLSOA"], body: (view,Inputs,scenarios) => {
+const selectLSOA = view(
+  Inputs.select(
+    scenarios.map((d) => d.lsoa),
+    {
+      value: "E01017987",
+      label: "LSOA",
+      sort: true,
+      unique: true,
+    }
+  )
+);
+return {selectLSOA};
+}});
+
+define({id: "87836bd7", inputs: ["sql","selectLSOA"], outputs: ["byLSOA"], body: async (sql,selectLSOA) => {
+const byLSOA = await sql`SELECT
+  budget,
+  lsoa,
+  year,
+  technology,
+  SUM(material_cost) AS total_material_cost,
+  SUM(labour_cost) AS total_labour_cost,
+  SUM(material_cost + labour_cost) AS total_cost,
+FROM scenariosdb
+where lsoa = ${selectLSOA}
+GROUP BY budget, year, lsoa, technology`;
+return {byLSOA};
+}});
+
+define({id: "9a578493", body: () => {
+// Inputs.table(byLSOA);
+}});
+
+define({id: "2a3f2770", inputs: ["display","Plot","width","byLSOA"], body: (display,Plot,width,byLSOA) => {
+display(
+  Plot.plot({
+    width: width,
+    height: 500,
+    color: { legend: true },
+    marginLeft: 80,
+    marginRight: 80,
+    facet: { data: byLSOA, y: "technology" },
+    x: {
+      // label: "Year",
+      tickFormat: (d) => d.toString(),
+    },
+    y: {
+      grid: true,
+      transform: (d) => d / 1000,
+      label: "Cost (thousand)",
+    },
+    marks: [
+      Plot.barY(byLSOA, {
+        x: "year",
+        y: "total_cost",
+        fill: "budget",
+        tip: true,
+      }),
+      Plot.ruleY([0]),
+    ],
+  })
+);
+}});
+
+define({id: "310a0ffb", inputs: ["scenarios"], outputs: ["groupbyBudget"], body: (scenarios) => {
+const groupbyBudget = Object.values(
+  scenarios.reduce((acc, obj) => {
+    let key = `${obj.budget}-${obj.lsoa}-${obj.year}`; // create a composite key
+    if (!acc[key]) {
+      acc[key] = {
+        budget: obj.budget,
+        lsoa: obj.lsoa,
+        year: obj.year,
+        total_material_cost: 0,
+        total_labour_cost: 0,
+        total_cost: 0,
+      };
+    }
+    acc[key].total_material_cost += obj.material_cost;
+    acc[key].total_labour_cost += obj.labour_cost;
+    acc[key].total_cost += obj.material_cost + obj.labour_cost;
+    return acc;
+  }, {})
+);
+return {groupbyBudget};
+}});
+
+define({id: "172de2d1", inputs: ["view","Inputs","scenarios"], outputs: ["selectCost1","selectLSOA1"], body: (view,Inputs,scenarios) => {
+const selectCost1 = view(
+  Inputs.select(["total_material_cost", "total_labour_cost", "total_cost"], {
+    value: "total_cost",
+    label: "Cost",
+    sort: true,
+    unique: true,
+  })
+);
+
+const selectLSOA1 = view(
+  Inputs.select(
+    scenarios.map((d) => d.lsoa),
+    {
+      value: "E01017987",
+      label: "LSOA",
+      sort: true,
+      unique: true,
+    }
+  )
+);
+return {selectCost1,selectLSOA1};
+}});
+
+define({id: "0f19cedd", inputs: ["display","Plot","width","groupbyBudget","selectLSOA1","selectCost1"], body: (display,Plot,width,groupbyBudget,selectLSOA1,selectCost1) => {
+display(
+  Plot.plot({
+    width: width,
+    marginLeft: 80,
+    grid: true,
+    color: { legend: true },
+    marks: [
+      Plot.ruleY([0]),
+      Plot.lineY(
+        groupbyBudget.filter((d) => d.lsoa === selectLSOA1),
+        {
+          x: "year",
+          y: selectCost1,
+          sort: "year",
+          stroke: "budget",
+          marker: true,
+          tip: true,
+        }
+      ),
+    ],
+  })
+);
+}});
+
+define({id: "49a48817", inputs: ["scenarios","display"], outputs: ["groupbyTechnology"], body: (scenarios,display) => {
+const groupbyTechnology = Object.values(
+  scenarios.reduce((acc, obj) => {
+    let key = `${obj.budget}-${obj.lsoa}-${obj.year}-${obj.technology}`;
+    if (!acc[key]) {
+      acc[key] = {
+        budget: obj.budget,
+        lsoa: obj.lsoa,
+        year: obj.year,
+        technology: obj.technology,
+        total_material_cost: 0,
+        total_labour_cost: 0,
+        total_cost: 0,
+      };
+    }
+    acc[key].total_material_cost += obj.material_cost;
+    acc[key].total_labour_cost += obj.labour_cost;
+    acc[key].total_cost += obj.material_cost + obj.labour_cost;
+    return acc;
+  }, {})
+);
+display(groupbyTechnology);
+return {groupbyTechnology};
+}});
+
+define({id: "c771c53f", inputs: ["d3","scenarios","display"], outputs: ["filteredScenario"], body: (d3,scenarios,display) => {
+// const grouped = d3.group(
+//   scenarios,
+//   (d) => d.budget,
+//   (d) => d.lsoa,
+//   (d) => d.year,
+//   (d) => d.technology
+// );
+
+// const nested = Array.from(grouped, ([budget, lsoas]) => ({
+//   budget,
+//   lsoas: Array.from(lsoas, ([lsoa, years]) => ({
+//     lsoa,
+//     years: Array.from(years, ([year, technologies]) => ({
+//       year,
+//       technologies: Array.from(technologies, ([technology, data]) => ({
+//         technology,
+//         total_material_cost: d3.sum(data, (d) => d.material_cost),
+//         total_labour_cost: d3.sum(data, (d) => d.labour_cost),
+//         total_cost: d3.sum(data, (d) => d.material_cost + d.labour_cost),
+//       })),
+//     })),
+//   })),
+// }));
+
+// const result2 = Array.from(grouped, ([budget, lsoaMap]) =>
+//   Array.from(lsoaMap, ([lsoa, yearMap]) =>
+//     Array.from(yearMap, ([year, techMap]) =>
+//       Array.from(techMap, ([technology, data]) => ({
+//         budget,
+//         lsoa,
+//         year,
+//         technology,
+//         total_material_cost: d3.sum(data, (d) => d.material_cost),
+//         total_labour_cost: d3.sum(data, (d) => d.labour_cost),
+//         total_cost: d3.sum(data, (d) => d.material_cost + d.labour_cost),
+//       }))
+//     ).flat()
+//   ).flat()
+// ).flat();
+
+const filteredScenario = d3.filter(
+  scenarios,
+  (d) =>
+    (d.material_cost !== null && d.labour_cost !== null) ||
+    d.hasOwnProperty("year")
+);
+
+// const grouped = d3.rollup(
+//   filteredScenario,
+//   (v) => d3.sum(v, (d) => d.material_cost || 0), // Handle null or empty values
+//   (v) => d3.sum(v, (d) => d.labour_cost || 0), // Handle null or empty values
+//   (d) => d.budget,
+//   (d) => d.lsoa,
+//   (d) => d.year,
+//   (d) => d.technology
+// );
+
+// const result2 = Array.from(grouped, ([budget, lsoaMap]) =>
+//   Array.from(lsoaMap, ([lsoa, yearMap]) =>
+//     Array.from(yearMap, ([year, techMap]) =>
+//       Array.from(techMap, ([technology, values]) => {
+//         const [total_material_cost, total_labour_cost] = Array.isArray(values)
+//           ? values
+//           : [0, 0];
+//         return {
+//           budget,
+//           lsoa,
+//           year,
+//           technology,
+//           total_material_cost,
+//           total_labour_cost,
+//           total_cost: total_material_cost + total_labour_cost,
+//         };
+//       })
+//     ).flat()
+//   ).flat()
+// ).flat();
+
+display(filteredScenario);
+return {filteredScenario};
+}});
+
+define({id: "a5e3f71a", inputs: ["view","Inputs","scenarios"], outputs: ["selectCost2","selectLSOA2"], body: (view,Inputs,scenarios) => {
+const selectCost2 = view(
+  Inputs.select(["total_material_cost", "total_labour_cost", "total_cost"], {
+    value: "total_cost",
+    label: "Cost",
+    sort: true,
+    unique: true,
+  })
+);
+
+const selectLSOA2 = view(
+  Inputs.select(
+    scenarios.map((d) => d.lsoa),
+    {
+      value: "E01017987",
+      label: "LSOA",
+      sort: true,
+      unique: true,
+    }
+  )
+);
+
+// const selectTechnology = view(
+//   Inputs.select(
+//     scenarios.map((d) => d.technology),
+//     {
+//       value: "E01017987",
+//       label: "Technology",
+//       sort: true,
+//       unique: true,
+//     }
+//   )
+// );
+return {selectCost2,selectLSOA2};
+}});
+
+define({id: "363399a5", inputs: ["d3","alldata","display","Plot","width","selectCost2"], outputs: ["bands","step"], body: (d3,alldata,display,Plot,width,selectCost2) => {
+const bands = 7;
+const step = d3.max(alldata, (d) => d.total_cost) / bands;
+
+display(
+  Plot.plot({
+    // height: 720,
+    width: width,
+    axis: null,
+    y: { domain: [0, step] },
+    color: { legend: true },
+    // color: { scheme: "YlGnBu" },
+    facet: { data: alldata, y: "technology" },
+    marks: [
+      // d3.range(bands).map((i) =>
+      //   Plot.areaY(groupbyTechnology, {
+      //     x: "year",
+      //     y: (d) => d.total_cost - i * step,
+      //     fill: i,
+      //     clip: true,
+      //   })
+      // ),
+
+      Plot.lineY(
+        alldata, //.filter((d) => d.lsoa === selectLSOA2),
+        {
+          x: "year",
+          y: selectCost2,
+          sort: "year",
+          stroke: "budget",
+          marker: true,
+          tip: true,
+        }
+      ),
+      Plot.text(
+        alldata,
+        Plot.selectFirst({
+          text: "technology",
+          frameAnchor: "top-left",
+          dx: 6,
+          dy: 6,
+        })
+      ),
+      Plot.frame(),
+    ],
+  })
+);
+return {bands,step};
+}});
+
+define({id: "89ed5164", inputs: ["width"], outputs: ["drawCascadingPetal"], body: (width) => {
+// flower petals
+function drawCascadingPetal(ctx, length, angle, color1, color2) {
+  ctx.save();
+  ctx.translate(ctx.canvas.width / 2, ctx.canvas.height / 2);
+  ctx.rotate(angle);
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(
+    length / 4 + Math.random() * 5,
+    -length / 2 - Math.random() * 10,
+    length / 2,
+    -length / 3 + Math.random() * 5,
+    length,
+    0
+  );
+  ctx.bezierCurveTo(
+    length / 2,
+    length / 3 + Math.random() * 5,
+    length / 4 + Math.random() * 5,
+    length / 2 + Math.random() * 10,
+    0,
+    0
+  );
+  // add stroke
+  ctx.strokeStyle = "rgba(206, 0, 245, 0.6)"; //"purple";
+  ctx.stroke();
+  ctx.closePath();
+
+  // Gradient for depth
+  const gradient = ctx.createLinearGradient(0, 0, length + 10, 0);
+  gradient.addColorStop(0, color1);
+  gradient.addColorStop(1, color2);
+  ctx.fillStyle = gradient;
+
+  ctx.fill();
+  ctx.restore();
+}
+
+// draw!
+
+{
+  const canvas = document.querySelector("#glyph1");
+  const ctx = canvas.getContext("2d");
+  canvas.width = width;
+  ctx.fillStyle = "lightgrey";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const numPetals = 8;
+
+  const petalLengths = Array(numPetals).fill(180);
+
+  // Draw cascading petals with gradients
+  for (let i = 0; i < numPetals; i++) {
+    const angle = (i * Math.PI * 2) / numPetals;
+    const color1 = "rgba(254, 95, 177, 0.75)"; //"lightpink";
+    const color2 = "rgba(245, 0, 127, 0.8)"; //"hotpink";
+    drawCascadingPetal(ctx, petalLengths[i], angle, color1, color2);
+  }
+
+  // Draw the center
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.arc(canvas.width / 2, canvas.height / 2, 8, 0, Math.PI * 2);
+  ctx.fill();
+}
+return {drawCascadingPetal};
+}});
+
+</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type), h2:first-child, :not(h1) + h2">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#exploratory-data-analysis">Exploratory data analysis</a></li>
+<li class="observablehq-secondary-link"><a href="#glyph-designs">Glyph Designs</a></li>
+</ol>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div id="cell-7ca53046" class="observablehq observablehq--block"></div>
+<h1 id="data-exploration" tabindex="-1"><a class="observablehq-header-anchor" href="#data-exploration">Data Exploration</a></h1>
+<p>Before going through the glyph design, we'll explore the data to see what it contains, how many variables, etc.</p>
+<h2 id="exploratory-data-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#exploratory-data-analysis">Exploratory data analysis</a></h2>
+<p>The following displays all the data:</p>
+<div id="cell-65d9bc17" class="observablehq observablehq--block"></div>
+<h3 id="inspecting-the-data" tabindex="-1"><a class="observablehq-header-anchor" href="#inspecting-the-data">Inspecting the data</a></h3>
+<p>Here is all the data visualised using arrow</p>
+<div id="cell-23fafb29" class="observablehq observablehq--block"></div>
+<div id="cell-87836bd7" class="observablehq observablehq--block"></div>
+<div id="cell-9a578493" class="observablehq observablehq--block"></div>
+<div id="cell-2a3f2770" class="observablehq observablehq--block"></div>
+<h3 id="group-by-budgets" tabindex="-1"><a class="observablehq-header-anchor" href="#group-by-budgets">Group by Budgets</a></h3>
+<p>The main variable to display is the <strong>budget</strong>, which represent each scenario's budget over time. We can see for example how the progression of one LSOA (Local Super Output Area) budget looks like over the years:</p>
+<div id="cell-310a0ffb" class="observablehq observablehq--block"></div>
+<div id="cell-172de2d1" class="observablehq observablehq--block"></div>
+<div id="cell-0f19cedd" class="observablehq observablehq--block"></div>
+<h3 id="group-by-technology" tabindex="-1"><a class="observablehq-header-anchor" href="#group-by-technology">Group by Technology</a></h3>
+<div id="cell-49a48817" class="observablehq observablehq--block"></div>
+<div id="cell-c771c53f" class="observablehq observablehq--block"></div>
+<div id="cell-a5e3f71a" class="observablehq observablehq--block"></div>
+<div id="cell-363399a5" class="observablehq observablehq--block"></div>
+<h2 id="glyph-designs" tabindex="-1"><a class="observablehq-header-anchor" href="#glyph-designs">Glyph Designs</a></h2>
+<h3 id="small-multiples" tabindex="-1"><a class="observablehq-header-anchor" href="#small-multiples">Small multiples</a></h3>
+<figure style="max-width: 100%;">
+  <canvas id="glyph1" width="960" height="400"></canvas>
+</figure>
+<div id="cell-89ed5164" class="observablehq observablehq--block"></div>
+<h3 id="nightingale-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#nightingale-chart">Nightingale chart</a></h3>
+<h3 id="radial-barchart" tabindex="-1"><a class="observablehq-header-anchor" href="#radial-barchart">Radial Barchart</a></h3>
+</main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-04-19T11:27:42">Apr 19, 2024</a>.</div>
+</footer>
+</div>
