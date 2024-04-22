@@ -21,7 +21,7 @@
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
 <link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/_esm.js">
-<link rel="modulepreload" href="./_npm/apache-arrow@15.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/apache-arrow@16.0.0/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
@@ -63,7 +63,7 @@ import {define} from "./_observablehq/client.js";
 import {registerFile, FileAttachment} from "./_observablehq/stdlib.js";
 import {registerTable} from "./_observablehq/stdlib/duckdb.js";
 
-registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.d79aae05.csv","lastModified":1713527444059});
+registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1713799222700});
 registerTable("scenariosdb", FileAttachment("./data/formatted_cbe_scenarios.csv"));
 
 define({id: "7ca53046", inputs: ["sql"], outputs: ["alldata"], body: async (sql) => {
@@ -80,15 +80,21 @@ GROUP BY budget, year, lsoa, technology`;
 return {alldata};
 }});
 
-define({id: "65d9bc17", inputs: ["FileAttachment","display","Inputs"], outputs: ["scenarios"], body: async (FileAttachment,display,Inputs) => {
+define({id: "5924fd8a", inputs: ["FileAttachment","view","Inputs"], outputs: ["scenarios","searched"], body: async (FileAttachment,view,Inputs) => {
 const scenarios = await FileAttachment(
   "./data/formatted_cbe_scenarios.csv"
 ).csv({
   typed: true,
 });
 
-display(Inputs.table(scenarios));
-return {scenarios};
+const searched = view(Inputs.search(scenarios));
+
+// display(searched);
+return {scenarios,searched};
+}});
+
+define({id: "a3f98762", inputs: ["display","Inputs","searched"], body: (display,Inputs,searched) => {
+display(Inputs.table(searched));
 }});
 
 define({id: "310a0ffb", inputs: ["scenarios"], outputs: ["groupbyBudget"], body: (scenarios) => {
@@ -163,6 +169,25 @@ display(
 );
 }});
 
+define({id: "2519f3ba", inputs: ["display","Inputs","sql","selectLSOA2"], outputs: ["byLSOA"], body: async (display,Inputs,sql,selectLSOA2) => {
+const byLSOA = ((_) => (display(Inputs.table(_)), _))(await sql`SELECT
+  budget,
+  lsoa,
+  year,
+  technology,
+  SUM(material_cost) AS total_material_cost,
+  SUM(labour_cost) AS total_labour_cost,
+  SUM(material_cost + labour_cost) AS total_cost,
+FROM scenariosdb
+where lsoa = ${selectLSOA2}
+GROUP BY budget, year, lsoa, technology`);
+return {byLSOA};
+}});
+
+define({id: "949bb6cc", inputs: ["display","byLSOA"], body: (display,byLSOA) => {
+display([...byLSOA]);
+}});
+
 define({id: "256c88c9", inputs: ["view","Inputs","scenarios"], outputs: ["selectCost2","selectLSOA2"], body: (view,Inputs,scenarios) => {
 const selectCost2 = view(
   Inputs.select(["total_material_cost", "total_labour_cost", "total_cost"], {
@@ -187,26 +212,11 @@ const selectLSOA2 = view(
 return {selectCost2,selectLSOA2};
 }});
 
-define({id: "b56dcc20", inputs: ["sql","selectLSOA2"], outputs: ["byLSOA"], body: async (sql,selectLSOA2) => {
-const byLSOA = await sql`SELECT
-  budget,
-  lsoa,
-  year,
-  technology,
-  SUM(material_cost) AS total_material_cost,
-  SUM(labour_cost) AS total_labour_cost,
-  SUM(material_cost + labour_cost) AS total_cost,
-FROM scenariosdb
-where lsoa = ${selectLSOA2}
-GROUP BY budget, year, lsoa, technology`;
-return {byLSOA};
-}});
-
-define({id: "9bc2908d", inputs: ["display","Plot","width","byLSOA","selectCost2"], body: (display,Plot,width,byLSOA,selectCost2) => {
+define({id: "b69f4533", inputs: ["display","Plot","width","byLSOA","selectCost2"], body: (display,Plot,width,byLSOA,selectCost2) => {
 display(
   Plot.plot({
     width: width,
-    height: 500,
+    height: 600,
     color: { legend: true },
     marginLeft: 80,
     marginRight: 80,
@@ -233,217 +243,53 @@ display(
 );
 }});
 
-define({id: "f22b3fd5", outputs: ["drawCascadingPetal"], body: () => {
-// flower petals
-function drawCascadingPetal(ctx, length, angle, color1, color2) {
-  ctx.save();
-  ctx.translate(ctx.canvas.width / 2, ctx.canvas.height / 2);
-  ctx.rotate(angle);
-
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.bezierCurveTo(
-    length / 4 + Math.random() * 5,
-    -length / 2 - Math.random() * 10,
-    length / 2,
-    -length / 3 + Math.random() * 5,
-    length,
-    0
-  );
-  ctx.bezierCurveTo(
-    length / 2,
-    length / 3 + Math.random() * 5,
-    length / 4 + Math.random() * 5,
-    length / 2 + Math.random() * 10,
-    0,
-    0
-  );
-  // add stroke
-  ctx.strokeStyle = "rgba(206, 0, 245, 0.6)"; //"purple";
-  ctx.stroke();
-  ctx.closePath();
-
-  // Gradient for depth
-  const gradient = ctx.createLinearGradient(0, 0, length + 10, 0);
-  gradient.addColorStop(0, color1);
-  gradient.addColorStop(1, color2);
-  ctx.fillStyle = gradient;
-
-  ctx.fill();
-  ctx.restore();
-}
-
-// draw!
-
-{
-  const canvas = document.querySelector("#flower");
-  const ctx = canvas.getContext("2d");
-  // canvas.width = width;
-  ctx.fillStyle = "lightgrey";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  const numPetals = 8;
-
-  const petalLengths = Array(numPetals).fill(180);
-
-  // Draw cascading petals with gradients
-  for (let i = 0; i < numPetals; i++) {
-    const angle = (i * Math.PI * 2) / numPetals;
-    const color1 = "rgba(254, 95, 177, 0.75)"; //"lightpink";
-    const color2 = "rgba(245, 0, 127, 0.8)"; //"hotpink";
-    drawCascadingPetal(ctx, petalLengths[i], angle, color1, color2);
-  }
-
-  // Draw the center
-  ctx.fillStyle = "red";
-  ctx.beginPath();
-  ctx.arc(canvas.width / 2, canvas.height / 2, 8, 0, Math.PI * 2);
-  ctx.fill();
-}
-return {drawCascadingPetal};
-}});
-
-define({id: "1e25e993", body: () => {
-// draw function here
-
-// draw!
-{
-  const canvas = document.querySelector("#glyph1");
-  const ctx = canvas.getContext("2d");
-  // canvas.width = width;
-  ctx.fillStyle = "lightgrey";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  const radius = canvas.width / 2;
-  const numSectors = 3;
-  const sectorAngle = (Math.PI * 2) / numSectors;
-
-  ctx.translate(canvas.width / 2, canvas.height / 2);
-
-  for (let i = 0; i < numSectors; i++) {
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(radius, 0);
-    ctx.arc(0, 0, radius, 0, sectorAngle);
-    ctx.closePath();
-    ctx.fillStyle = `hsl(${(i / numSectors) * 360}, 50%, 50%)`;
-    ctx.fill();
-    ctx.rotate(sectorAngle);
-  }
-}
-}});
-
-define({id: "764031e7", body: () => {
-// draw function here
-
-// draw!
-{
-  const canvas = document.querySelector("#glyph2");
-  const ctx = canvas.getContext("2d");
-  // canvas.width = width;
-  ctx.fillStyle = "lightgrey";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  const radius = canvas.width / 2;
-  const numSectors = 3;
-  const sectorAngle = (Math.PI * 2) / numSectors;
-
-  ctx.translate(canvas.width / 2, canvas.height / 2);
-
-  for (let i = 0; i < numSectors; i++) {
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(radius, 0);
-    ctx.arc(0, 0, radius, 0, sectorAngle);
-    ctx.closePath();
-    ctx.fillStyle = `hsl(${(i / numSectors) * 360}, 50%, 50%)`;
-    ctx.fill();
-    ctx.rotate(sectorAngle);
-  }
-}
-}});
-
-define({id: "3b5761ff", body: () => {
-// draw function here
-
-// draw!
-{
-  const canvas = document.querySelector("#glyph3");
-  const ctx = canvas.getContext("2d");
-  // canvas.width = width;
-  ctx.fillStyle = "lightgrey";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  const radius = canvas.width / 2;
-  const numSectors = 3;
-  const sectorAngle = (Math.PI * 2) / numSectors;
-
-  ctx.translate(canvas.width / 2, canvas.height / 2);
-
-  for (let i = 0; i < numSectors; i++) {
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(radius, 0);
-    ctx.arc(0, 0, radius, 0, sectorAngle);
-    ctx.closePath();
-    ctx.fillStyle = `hsl(${(i / numSectors) * 360}, 50%, 50%)`;
-    ctx.fill();
-    ctx.rotate(sectorAngle);
-  }
-}
-}});
-
 </script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Multivariate Timeseries</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./data_exploration">Data Exploration</a></li>
+    <li class="observablehq-link"><a href="./glyph_designs">Glyph Design</a></li>
+  </ol>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type), h2:first-child, :not(h1) + h2">
 <nav>
 <div>Contents</div>
 <ol>
 <li class="observablehq-secondary-link"><a href="#exploratory-data-analysis">Exploratory data analysis</a></li>
-<li class="observablehq-secondary-link"><a href="#glyph-designs">Glyph Designs</a></li>
+<li class="observablehq-secondary-link"><a href="#group-by-budgets">Group by Budgets</a></li>
+<li class="observablehq-secondary-link"><a href="#group-by-technology">Group by Technology</a></li>
 </ol>
 </nav>
 </aside>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
 <div id="cell-7ca53046" class="observablehq observablehq--block"></div>
-<h1 id="data-exploration" tabindex="-1"><a class="observablehq-header-anchor" href="#data-exploration">Data Exploration</a></h1>
-<p>Before going through the glyph design, we'll explore the data to see what it contains, how many variables, etc.</p>
+<!-- # Data Exploration -->
 <h2 id="exploratory-data-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#exploratory-data-analysis">Exploratory data analysis</a></h2>
-<p>The following displays all the data:</p>
-<div id="cell-65d9bc17" class="observablehq observablehq--block"></div>
-<h3 id="group-by-budgets" tabindex="-1"><a class="observablehq-header-anchor" href="#group-by-budgets">Group by Budgets</a></h3>
+<p>Before going through the glyph design, we'll explore the data to see what it contains, how many variables, etc.
+The following displays all the data:</p>
+<div id="cell-5924fd8a" class="observablehq observablehq--block"></div>
+<div id="cell-a3f98762" class="observablehq observablehq--block"></div>
+<h2 id="group-by-budgets" tabindex="-1"><a class="observablehq-header-anchor" href="#group-by-budgets">Group by Budgets</a></h2>
 <p>The main variable to display is the <strong>budget</strong>, which represent each scenario's budget over time. We can see for example how the progression of one LSOA (Local Super Output Area) budget looks like over the years:</p>
 <div id="cell-310a0ffb" class="observablehq observablehq--block"></div>
 <div id="cell-172de2d1" class="observablehq observablehq--block"></div>
 <div id="cell-0f19cedd" class="observablehq observablehq--block"></div>
-<h3 id="group-by-technology" tabindex="-1"><a class="observablehq-header-anchor" href="#group-by-technology">Group by Technology</a></h3>
-<p>Here is all the data visualised using arrow</p>
+<h2 id="group-by-technology" tabindex="-1"><a class="observablehq-header-anchor" href="#group-by-technology">Group by Technology</a></h2>
+<p>We preprocess the data to obtain data grouped by technology for each LSOA and budget:</p>
+<div id="cell-2519f3ba" class="observablehq observablehq--block"></div>
+<div id="cell-949bb6cc" class="observablehq observablehq--block"></div>
+<p>Here is all the data visualised</p>
 <div id="cell-256c88c9" class="observablehq observablehq--block"></div>
-<div id="cell-b56dcc20" class="observablehq observablehq--block"></div>
-<div id="cell-9bc2908d" class="observablehq observablehq--block"></div>
-<h2 id="glyph-designs" tabindex="-1"><a class="observablehq-header-anchor" href="#glyph-designs">Glyph Designs</a></h2>
-<p>test canvas</p>
-<figure style="max-width: 100%;">
-  <canvas id="flower" width="400" height="400"></canvas>
-</figure>
-<div id="cell-f22b3fd5" class="observablehq observablehq--block"></div>
-<h3 id="small-multiples" tabindex="-1"><a class="observablehq-header-anchor" href="#small-multiples">Small multiples</a></h3>
-<figure style="max-width: 100%;">
-  <canvas id="glyph1" width="300" height="300"></canvas>
-</figure>
-<div id="cell-1e25e993" class="observablehq observablehq--block"></div>
-<h3 id="nightingale-chart" tabindex="-1"><a class="observablehq-header-anchor" href="#nightingale-chart">Nightingale chart</a></h3>
-<figure style="max-width: 100%;">
-  <canvas id="glyph2" width="300" height="300"></canvas>
-</figure>
-<div id="cell-764031e7" class="observablehq observablehq--block"></div>
-<h3 id="radial-barchart" tabindex="-1"><a class="observablehq-header-anchor" href="#radial-barchart">Radial Barchart</a></h3>
-<figure style="max-width: 100%;">
-  <canvas id="glyph3" width="300" height="300"></canvas>
-</figure>
-<div id="cell-3b5761ff" class="observablehq observablehq--block"></div>
+<div id="cell-b69f4533" class="observablehq observablehq--block"></div>
 </main>
 <footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-04-19T11:50:48">Apr 19, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-04-22T15:20:28">Apr 22, 2024</a>.</div>
 </footer>
 </div>
