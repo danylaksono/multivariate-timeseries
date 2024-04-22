@@ -119,9 +119,12 @@ function drawTimeseries2(ctx, x, y, data = dummyData, padding = 2) {
   const radius = (cellSize - 2 * padding) / 2;
   const innerRadius = radius / 5;
 
+  const gapAngle = (3 * Math.PI) / 180; // 3 degree gap
+
   // sectors
   const numSectors = 3; // budget.length()
-  const sectorAngle = (2 * Math.PI) / numSectors;
+  //   const sectorAngle = (2 * Math.PI) / numSectors;
+  const sectorAngle = (2 * Math.PI) / numSectors - gapAngle; // Subtract gapAngle from sectorAngle
   // segment inside sectors
   const numSegments = 4; // technology.length()
   const segmentAngle = sectorAngle / numSegments;
@@ -130,12 +133,14 @@ function drawTimeseries2(ctx, x, y, data = dummyData, padding = 2) {
   const partRadius = (radius - innerRadius) / partNumber;
 
   for (let i = 0; i < numSectors; i++) {
-    let sectorStartAngle = i * sectorAngle - Math.PI / 2;
+    // let sectorStartAngle = i * sectorAngle - Math.PI / 2;
+    let sectorStartAngle = i * (sectorAngle + gapAngle) - Math.PI / 2;
 
     // draw the sector
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
-    let startAngle = i * sectorAngle - Math.PI / 2;
+    // let startAngle = i * sectorAngle - Math.PI / 2;
+    let startAngle = i * (sectorAngle + gapAngle) - Math.PI / 2;
     let endAngle = startAngle + sectorAngle;
     ctx.arc(centerX, centerY, radius, startAngle, endAngle);
     ctx.closePath();
@@ -147,29 +152,22 @@ function drawTimeseries2(ctx, x, y, data = dummyData, padding = 2) {
       let startAngle = sectorStartAngle + j * segmentAngle;
       let endAngle = startAngle + segmentAngle;
 
-      // create a path for the first part
-      ctx.beginPath();
-      ctx.lineWidth = 0.2;
-      ctx.strokeStyle = "black";
-      ctx.arc(centerX, centerY, innerRadius + partRadius, startAngle, endAngle);
-      ctx.lineTo(centerX, centerY);
-      ctx.closePath();
-
-      // save the current state of the context
-      ctx.save();
-
       // draw each part within the segment
-      for (let k = 1; k < partNumber; k++) {
-        // move and resize the path for each part
-        ctx.translate(0, -partRadius);
-        ctx.scale(1, partRadius / (innerRadius + partRadius * k));
-
-        // draw the part
+      for (let k = 0; k < partNumber; k++) {
+        ctx.beginPath();
+        ctx.lineWidth = 0.2;
+        // ctx.strokeStyle = "black";
+        ctx.arc(
+          centerX,
+          centerY,
+          innerRadius + partRadius * (k + 1),
+          startAngle,
+          endAngle
+        );
+        ctx.lineTo(centerX, centerY);
         ctx.stroke();
+        ctx.closePath();
       }
-
-      // restore the original state of the context
-      ctx.restore();
     }
   }
 
