@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Dashboard | Multivariate Timeseries</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/statsbreaks@1.0.6/dist/index.min.js">
+<link rel="modulepreload" href="./_import/components/gridded-glyphmaps/index.min.7ebc4e68.js">
+<link rel="modulepreload" href="./_import/components/helper.0f2b5756.js">
+<link rel="modulepreload" href="./_import/components/config.30fb7f3d.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+import {registerFile} from "./_observablehq/stdlib.js";
+
+registerFile("./data/cbe_scenarios_reformatted.csv", {"name":"./data/cbe_scenarios_reformatted.csv","mimeType":"text/csv","path":"./_file/data/cbe_scenarios_reformatted.cd82bfef.csv","lastModified":1715262907315});
+
+define({id: "152502c1", outputs: ["d3","Mutable","statsbreaks","glyphMap","processDataCumulative","processData","colours","colourMapping"], body: async () => {
+const [d3, {Mutable}, statsbreaks, {glyphMap}, {processDataCumulative, processData}, {colours, colourMapping}] = await Promise.all([import("./_npm/d3@7.9.0/_esm.js"), import("./_observablehq/stdlib.js"), import("https://cdn.jsdelivr.net/npm/statsbreaks@1.0.6/dist/index.min.js"), import("./_import/components/gridded-glyphmaps/index.min.7ebc4e68.js"), import("./_import/components/helper.0f2b5756.js"), import("./_import/components/config.30fb7f3d.js")]);
+
+
+return {d3,Mutable,statsbreaks,glyphMap,processDataCumulative,processData,colours,colourMapping};
+}});
+
+define({id: "62af5524", inputs: ["FileAttachment"], outputs: ["griddedData"], body: (FileAttachment) => {
+const griddedData = FileAttachment("./data/cbe_scenarios_reformatted.csv").csv();
+return {griddedData};
+}});
+
+define({id: "9372bd59", inputs: ["Inputs","Generators"], outputs: ["carbonSavedInput","carbonSaved","costsInput","costs","budgetToVisualiseInput","budgetToVisualise","glyphModeInput","glyphMode","gridSizeInput","gridSize","cumulativeInput","cumulative"], body: (Inputs,Generators) => {
+const carbonSavedInput = Inputs.checkbox(
+  ["ashp_carbonsaved", "ev_carbonsaved", "pv_carbonsaved"],
+  {
+    label: "Carbon Saved",
+    value: ["ashp_carbonsaved", "pv_carbonsaved", "ev_carbonsaved"],
+  }
+);
+const carbonSaved = Generators.input(carbonSavedInput);
+
+const costsInput = Inputs.checkbox(
+  ["labour_cost", "material_cost", "total_cost"],
+  {
+    label: "Costs",
+  }
+);
+const costs = Generators.input(costsInput);
+
+const budgetToVisualiseInput = Inputs.radio(
+  ["capped15000k", "capped500k", "Uncapped"],
+  {
+    label: "Budgets",
+    value: "capped15000k",
+  }
+);
+const budgetToVisualise = Generators.input(budgetToVisualiseInput);
+
+const glyphModeInput = Inputs.select(
+  [
+    "Stacked Area Chart",
+    "Stream graph",
+    "Normalised Area Chart",
+    "Mirrored Area Chart",
+    "Line Chart",
+  ],
+  {
+    label: "Glyph Mode",
+    value: "Stacked Area Chart",
+  }
+);
+const glyphMode = Generators.input(glyphModeInput);
+
+const gridSizeInput = Inputs.radio([20, 30, 40, 50, 60, 80, 100], {
+  label: "Grid Size",
+  value: 60,
+});
+const gridSize = Generators.input(gridSizeInput);
+
+const cumulativeInput = Inputs.toggle({ label: "Cumulative?", value: false });
+const cumulative = Generators.input(cumulativeInput);
+return {carbonSavedInput,carbonSaved,costsInput,costs,budgetToVisualiseInput,budgetToVisualise,glyphModeInput,glyphMode,gridSizeInput,gridSize,cumulativeInput,cumulative};
+}});
+
+define({id: "ab2a190e", inline: true, inputs: ["carbonSavedInput","display"], body: async (carbonSavedInput,display) => {
+display(await(
+carbonSavedInput
+))
+}});
+
+define({id: "c7cf93b5", inline: true, inputs: ["costsInput","display"], body: async (costsInput,display) => {
+display(await(
+costsInput
+))
+}});
+
+define({id: "c1f1d63b", inline: true, inputs: ["budgetToVisualiseInput","display"], body: async (budgetToVisualiseInput,display) => {
+display(await(
+budgetToVisualiseInput
+))
+}});
+
+define({id: "2f483ec5", inline: true, inputs: ["glyphModeInput","display"], body: async (glyphModeInput,display) => {
+display(await(
+glyphModeInput
+))
+}});
+
+define({id: "ce8c5b94", inline: true, inputs: ["gridSizeInput","display"], body: async (gridSizeInput,display) => {
+display(await(
+gridSizeInput
+))
+}});
+
+define({id: "6952a4e9", inline: true, inputs: ["cumulativeInput","display"], body: async (cumulativeInput,display) => {
+display(await(
+cumulativeInput
+))
+}});
+
+define({id: "f2a4f852", inline: true, inputs: ["resize","drawGlyphmaps","display"], body: async (resize,drawGlyphmaps,display) => {
+display(await(
+resize((width, height) => drawGlyphmaps({ width, height }))
+))
+}});
+
+define({id: "42c5a23b", inputs: ["glyphMap","griddedData","gridSize","appendRecordsAggrFn","postAggrFn","interactiveDrawFn","glyphMode","drawLegend"], outputs: ["drawGlyphmaps"], body: (glyphMap,griddedData,gridSize,appendRecordsAggrFn,postAggrFn,interactiveDrawFn,glyphMode,drawLegend) => {
+function drawGlyphmaps({ width, height } = {}) {
+  return glyphMap({
+    data: griddedData,
+    getLocationFn: (row) => [row.lon, row.lat],
+    cellSize: gridSize, //60, // setGridSize(),
+    // mapType: "CartoPositronNoLabel", //"CartoPositron",
+    discretisationShape: "grid",
+
+    width: width,
+    height: height,
+    initbb: [
+      0.068638841385944, 52.1579417014909, 0.184552035598734, 52.2372295579635,
+    ],
+    greyscale: true,
+
+    glyph: {
+      // initFn: initFn,
+      aggrFn: appendRecordsAggrFn,
+      postAggrFn: postAggrFn,
+      drawFn: interactiveDrawFn(glyphMode),
+      postDrawFn: drawLegend,
+      //   tooltipTextFn: (cell) => {
+      //     const filteredData = cell.averages.filter(
+      //       (item) => item.budget === budgetToVisualise
+      //     );
+      //     setState(filteredData);
+      //     return "";
+      //   },
+    },
+  });
+}
+return {drawGlyphmaps};
+}});
+
+define({id: "6995becf", inputs: ["budgetToVisualise","selectedParameters","drawStreamgraph"], outputs: ["drawFnStreams"], body: (budgetToVisualise,selectedParameters,drawStreamgraph) => {
+function drawFnStreams(cell, x, y, cellSize, ctx, global, panel) {
+  if (!cell) return;
+  const padding = 2;
+  // ctx.globalAlpha = 0.8;
+
+  var grid_long = cellSize - padding * 2;
+  var grid_wide = cellSize - padding * 2;
+  //draw cell background
+  const boundary = cell.getBoundary(padding);
+  // console.log("boundary: ", boundary);
+  ctx.fillStyle = "#cccb";
+  ctx.beginPath();
+  ctx.moveTo(boundary[0][0], boundary[0][1]);
+  for (let i = 1; i < boundary.length; i++)
+    ctx.lineTo(boundary[i][0], boundary[i][1]);
+  ctx.closePath();
+  ctx.fill();
+
+  // draw the data
+  const filteredData = cell.averages.filter(
+    (item) => item.budget === budgetToVisualise
+  );
+
+  // console.log(filteredData);
+
+  const keysToVisualize = selectedParameters; //["labour_cost", "material_cost", "total_cost"];
+  drawStreamgraph(ctx, x, y, cellSize, filteredData, 2, keysToVisualize);
+}
+return {drawFnStreams};
+}});
+
+define({id: "bb32aca9", inputs: ["d3","colourMapping"], outputs: ["drawAreaChart"], body: (d3,colourMapping) => {
+function drawAreaChart(
+  ctx,
+  centerX,
+  centerY,
+  cellSize,
+  data = [],
+  padding = 2,
+  keysToVisualize
+) {
+  const drawWidth = cellSize - 2 * padding;
+  const drawHeight = cellSize - 2 * padding;
+
+  // console.log("data", keysToVisualize);
+
+  // Adjust the x scale to fit within the cell
+  const xScale = d3
+    .scaleTime()
+    .domain(d3.extent(data, (d) => new Date(d.year)))
+    .range([centerX - drawWidth / 2, centerX + drawWidth / 2]);
+
+  // Calculate the y scale based on the total sum of all keys for each year
+  const yScale = d3
+    .scaleLinear()
+    .domain([
+      0,
+      d3.max(data, (d) =>
+        keysToVisualize.reduce((sum, key) => sum + d[key], 0)
+      ),
+    ])
+    .range([centerY + drawHeight / 2, centerY - drawHeight / 2]);
+
+  const stack = d3.stack().keys(keysToVisualize).order(d3.stackOrderNone);
+
+  const series = stack(data);
+
+  // Define the curve function
+  const curve = d3.curveBumpX;
+
+  // Drawing
+  series.forEach((s) => {
+    ctx.beginPath();
+    const area = d3
+      .area()
+      .x((d) => xScale(new Date(d.data.year)))
+      .y0((d) => yScale(d[0]))
+      .y1((d) => yScale(d[1]))
+      .curve(curve);
+
+    area.context(ctx)(s);
+    ctx.fillStyle = colourMapping[s.key]; //colours[s.index]; //`hsl(${(s.index / series.length) * 360}, 80%, 60%)`;
+    ctx.fill();
+  });
+}
+return {drawAreaChart};
+}});
+
+define({id: "86cb36e7", inputs: ["d3","colourMapping"], outputs: ["drawAreachartStack"], body: (d3,colourMapping) => {
+function drawAreachartStack(
+  ctx,
+  centerX,
+  centerY,
+  cellSize,
+  data = [],
+  padding = 2,
+  keysToVisualize
+) {
+  const drawWidth = cellSize - 2 * padding;
+  const drawHeight = cellSize - 2 * padding;
+
+  // Adjust the x scale to fit within the cell
+  const xScale = d3
+    .scaleTime()
+    .domain(d3.extent(data, (d) => new Date(d.year)))
+    .range([centerX - drawWidth / 2, centerX + drawWidth / 2]);
+
+  // Calculate the y scale based on normalized percentages
+  const yScale = d3
+    .scaleLinear()
+    .domain([0, 1]) // Domain is 0 to 1 for normalized values
+    .range([centerY + drawHeight / 2, centerY - drawHeight / 2]);
+
+  const stack = d3.stack().keys(keysToVisualize).order(d3.stackOrderNone);
+
+  // Normalize the data
+  const normalizedData = data.map((d) => {
+    const total = keysToVisualize.reduce((sum, key) => sum + d[key], 0);
+    return {
+      ...d,
+      ...keysToVisualize.reduce((acc, key) => {
+        acc[key] = d[key] / total;
+        return acc;
+      }, {}),
+    };
+  });
+
+  const series = stack(normalizedData);
+
+  // Define the curve function
+  const curve = d3.curveBumpX;
+
+  // Drawing
+  series.forEach((s) => {
+    ctx.beginPath();
+    const area = d3
+      .area()
+      .x((d) => xScale(new Date(d.data.year)))
+      .y0((d) => yScale(d[0]))
+      .y1((d) => yScale(d[1]))
+      .curve(curve);
+
+    area.context(ctx)(s);
+    ctx.fillStyle = colourMapping[s.key]; // colours[s.index];//`hsl(${(s.index / series.length) * 360}, 80%, 60%)`;
+    ctx.fill();
+  });
+}
+return {drawAreachartStack};
+}});
+
+define({id: "11670f03", inputs: ["d3","colourMapping"], outputs: ["drawLineChart"], body: (d3,colourMapping) => {
+function drawLineChart(
+  ctx,
+  centerX,
+  centerY,
+  cellSize,
+  data = [],
+  padding = 2,
+  keysToVisualize
+) {
+  const drawWidth = cellSize - 2 * padding;
+  const drawHeight = cellSize - 2 * padding;
+
+  // Filter out years without any data
+  const filteredData = data.filter((d) =>
+    keysToVisualize.some((key) => d[key] !== undefined)
+  );
+
+  // Adjust the x scale to fit within the cell
+  const xScale = d3
+    .scaleTime()
+    .domain(d3.extent(filteredData, (d) => new Date(d.year)))
+    .range([centerX - drawWidth / 2, centerX + drawWidth / 2]);
+
+  // Calculate the y scale based on the total sum of all keys for each year
+  const yScale = d3
+    .scaleLinear()
+    .domain([
+      0,
+      d3.max(filteredData, (d) =>
+        keysToVisualize.reduce((sum, key) => sum + (d[key] || 0), 0)
+      ),
+    ])
+    .range([centerY + drawHeight / 2, centerY - drawHeight / 2]);
+
+  // Draw lines for each key-data series
+  keysToVisualize.forEach((key, i) => {
+    const color = colourMapping[key]; // colours[i];
+
+    const dataPoints = filteredData.map((d) => ({
+      x: xScale(new Date(d.year)),
+      y: yScale(d[key] || 0), // Handle undefined values
+    }));
+
+    if (dataPoints.length > 0) {
+      ctx.beginPath();
+      ctx.moveTo(dataPoints[0].x, dataPoints[0].y);
+      for (let j = 1; j < dataPoints.length; j++) {
+        ctx.lineTo(dataPoints[j].x, dataPoints[j].y);
+      }
+
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  });
+}
+return {drawLineChart};
+}});
+
+define({id: "09db6ed8", inputs: ["d3","colourMapping"], outputs: ["drawStreamgraph"], body: (d3,colourMapping) => {
+function drawStreamgraph(
+  ctx,
+  centerX,
+  centerY,
+  cellSize,
+  data = [],
+  padding = 2,
+  keysToVisualize
+) {
+  const drawWidth = cellSize - 2 * padding;
+  const drawHeight = cellSize - 2 * padding;
+
+  // Adjust the x scale to fit within the cell
+  const xScale = d3
+    .scaleTime()
+    .domain(d3.extent(data, (d) => new Date(d.year)))
+    .range([
+      centerX - drawWidth / 2 + padding,
+      centerX + drawWidth / 2 - padding,
+    ]);
+
+  // Calculate the maximum sum of all keys for each year
+  const maxSum = d3.max(data, (d) =>
+    keysToVisualize.reduce((sum, key) => sum + d[key], 0)
+  );
+
+  // Calculate the y scale based on the total sum of all keys and the available cell height
+  const maxHeight = drawHeight / 2;
+  const yScale = d3
+    .scaleLinear()
+    .domain([-maxSum, maxSum])
+    .range([centerY + maxHeight, centerY - maxHeight])
+    .nice();
+
+  const stack = d3
+    .stack()
+    .keys(keysToVisualize)
+    .order(d3.stackOrderNone)
+    .offset(d3.stackOffsetSilhouette);
+
+  const series = stack(data);
+
+  // Define the curve function
+  const curve = d3.curveBumpX;
+
+  // Drawing
+  series.forEach((s) => {
+    ctx.beginPath();
+    const area = d3
+      .area()
+      .x((d) => xScale(new Date(d.data.year)))
+      .y0((d) => yScale(d[0]))
+      .y1((d) => yScale(d[1]))
+      .curve(curve);
+    area.context(ctx)(s);
+    ctx.fillStyle = colourMapping[s.key]; // colours[s.index]; // `hsl(${(s.index / series.length) * 360}, 80%, 60%)`;
+    ctx.fill();
+  });
+}
+return {drawStreamgraph};
+}});
+
+define({id: "6c477c3c", inputs: ["d3","colourMapping"], outputs: ["drawStreamgraphMirror"], body: (d3,colourMapping) => {
+function drawStreamgraphMirror(
+  ctx,
+  centerX,
+  centerY,
+  cellSize,
+  data = [],
+  padding = 2,
+  keysToVisualize = []
+) {
+  const drawWidth = cellSize - 2 * padding;
+  const drawHeight = cellSize - 2 * padding;
+
+  // Adjust the x scale to fit within the cell
+  const xScale = d3
+    .scaleTime()
+    .domain(d3.extent(data, (d) => new Date(d.year)))
+    .range([
+      centerX - drawWidth / 2 + padding,
+      centerX + drawWidth / 2 - padding,
+    ]);
+
+  // Calculate the maximum sum of all keys for each year
+  const maxSum = d3.max(data, (d) =>
+    keysToVisualize.reduce((sum, key) => sum + Math.abs(d[key]), 0)
+  );
+
+  // Calculate the y scale based on the total sum of all keys and the available cell height
+  const maxHeight = drawHeight / 2;
+  const yScale = d3
+    .scaleLinear()
+    .domain([-maxSum, maxSum])
+    .range([-maxHeight, maxHeight])
+    .nice();
+
+  const upwardKeys = keysToVisualize.filter((key) =>
+    ["labour_cost", "material_cost", "total_cost"].includes(key)
+  );
+  const downwardKeys = keysToVisualize.filter((key) =>
+    ["ashp_carbonsaved", "ev_carbonsaved", "pv_carbonsaved"].includes(key)
+  );
+
+  const upwardStack = d3.stack().keys(upwardKeys).order(d3.stackOrderNone);
+  const downwardStack = d3.stack().keys(downwardKeys).order(d3.stackOrderNone);
+
+  const upwardSeries = upwardStack(data);
+  const downwardSeries = downwardStack(data);
+
+  // Define the curve function
+  const curve = d3.curveBumpX;
+
+  // Drawing upward series
+  upwardSeries.forEach((s) => {
+    ctx.beginPath();
+    const area = d3
+      .area()
+      .x((d) => xScale(new Date(d.data.year)))
+      .y0((d) => centerY + yScale(d[0]))
+      .y1((d) => centerY + yScale(d[1]))
+      .curve(curve);
+    area.context(ctx)(s);
+    ctx.fillStyle = colourMapping[s.key]; //colours[s.index];
+    ctx.fill();
+  });
+
+  // Drawing downward series
+  downwardSeries.forEach((s) => {
+    ctx.beginPath();
+    const area = d3
+      .area()
+      .x((d) => xScale(new Date(d.data.year)))
+      .y0((d) => centerY - yScale(d[0]))
+      .y1((d) => centerY - yScale(d[1]))
+      .curve(curve);
+    area.context(ctx)(s);
+    ctx.fillStyle = colourMapping[s.key]; //colours[s.index + upwardKeys.length];
+    ctx.fill();
+  });
+}
+return {drawStreamgraphMirror};
+}});
+
+define({id: "5a876208", inputs: ["glyphMode","drawGlyphmaps","interactiveDrawFn"], outputs: ["setglyphmode"], body: (glyphMode,drawGlyphmaps,interactiveDrawFn) => {
+const setglyphmode = () => {
+  glyphMode;
+  drawGlyphmaps().setGlyph({
+    drawFn: interactiveDrawFn(glyphMode),
+  });
+  //   drawGlyphmaps.setGlyph({
+  //     drawFn: interactiveDrawFn(glyphMode),
+  //   });
+};
+return {setglyphmode};
+}});
+
+define({id: "eac29cab", inputs: ["budgetToVisualise","selectedParameters","drawLineChart","drawStreamgraph","drawAreachartStack","drawAreaChart","drawStreamgraphMirror"], outputs: ["interactiveDrawFn"], body: (budgetToVisualise,selectedParameters,drawLineChart,drawStreamgraph,drawAreachartStack,drawAreaChart,drawStreamgraphMirror) => {
+function interactiveDrawFn(mode) {
+  return function drawFn(cell, x, y, cellSize, ctx, global, panel) {
+    if (!cell) return;
+    const padding = 2;
+    // ctx.globalAlpha = 0.5;
+
+    var grid_long = cellSize - padding * 2;
+    var grid_wide = cellSize - padding * 2;
+
+    //draw cell background
+    const boundary = cell.getBoundary(padding);
+    // console.log("boundary: ", boundary);
+    ctx.fillStyle = "#cccb";
+    ctx.beginPath();
+    ctx.moveTo(boundary[0][0], boundary[0][1]);
+    for (let i = 1; i < boundary.length; i++)
+      ctx.lineTo(boundary[i][0], boundary[i][1]);
+    ctx.closePath();
+    ctx.fill();
+
+    // draw the data
+    const filteredData = cell.averages.filter(
+      (item) => item.budget === budgetToVisualise
+    );
+
+    // console.log(filteredData);
+
+    const keysToVisualize = selectedParameters; //["labour_cost", "material_cost", "total_cost"];
+
+    if (mode == "Line Chart") {
+      drawLineChart(ctx, x, y, cellSize, filteredData, 2, keysToVisualize);
+    } else if (mode == "Stream graph") {
+      drawStreamgraph(ctx, x, y, cellSize, filteredData, 2, keysToVisualize);
+    } else if (mode == "Normalised Area Chart") {
+      drawAreachartStack(ctx, x, y, cellSize, filteredData, 2, keysToVisualize);
+    } else if (mode == "Stacked Area Chart") {
+      drawAreaChart(ctx, x, y, cellSize, filteredData, 2, keysToVisualize);
+    } else if (mode == "Mirrored Area Chart") {
+      drawStreamgraphMirror(
+        ctx,
+        x,
+        y,
+        cellSize,
+        filteredData,
+        2,
+        keysToVisualize
+      );
+    }
+  };
+}
+return {interactiveDrawFn};
+}});
+
+define({id: "f8435c66", inputs: ["cumulative","processDataCumulative","selectedParameters","processData"], outputs: ["postAggrFn"], body: (cumulative,processDataCumulative,selectedParameters,processData) => {
+function postAggrFn(cells, cellSize, global, panel) {
+  for (const cell of cells) {
+    cell.averages = [];
+    // const keysToVisualize = ["labour_cost", "material_cost", "total_cost"];
+    if (cell.records) {
+      if (cumulative) {
+        cell.averages = processDataCumulative(
+          cell.records,
+          ["budget", "year"],
+          selectedParameters,
+          "sum"
+        );
+      } else {
+        cell.averages = processData(
+          cell.records,
+          ["budget", "year"],
+          selectedParameters,
+          "sum"
+        );
+      }
+    }
+  }
+}
+return {postAggrFn};
+}});
+
+define({id: "9349a2dd", outputs: ["appendRecordsAggrFn"], body: () => {
+function appendRecordsAggrFn(cell, row, weight, global, panel) {
+  //   console.log("appendrecords");
+  if (!cell.records) cell.records = []; //if the cell doesn't currently have a records property, make one
+  cell.records.push(row);
+}
+return {appendRecordsAggrFn};
+}});
+
+define({id: "19644d7a", inputs: ["carbonSaved","costs"], outputs: ["selectedParameters"], body: (carbonSaved,costs) => {
+const selectedParameters = carbonSaved.concat(costs);
+// display(selectedParameters);
+return {selectedParameters};
+}});
+
+define({id: "1c1236d5", inputs: ["Mutable"], outputs: ["setState","setGridSize"], body: (Mutable) => {
+function setState(value) {
+  const state = Mutable(value);
+  const setState = (value) => (state.value = value);
+  return [state, setState];
+}
+
+function setGridSize(value) {
+  const state = Mutable(value);
+  const setState = (value) => (state.value = value);
+  return [state, setState];
+}
+return {setState,setGridSize};
+}});
+
+define({id: "59ea64eb", inputs: ["d3","selectedParameters","colourMapping","colours"], outputs: ["drawLegend"], body: (d3,selectedParameters,colourMapping,colours) => {
+function drawLegend(grid, cellSize, ctx, global, panel) {
+  ctx.font = "10px sans-serif";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
+
+  const maxTextWidth = d3.max(
+    selectedParameters.map((item) => ctx.measureText(item).width)
+  );
+
+  const x = panel.getWidth() - maxTextWidth - 20;
+  let y = panel.getHeight() - selectedParameters.length * 15;
+
+  ctx.fillStyle = "#fff8";
+  ctx.fillRect(x, y, maxTextWidth + 15, selectedParameters.length * 15);
+
+  for (let i = 0; i < selectedParameters.length; i++) {
+    const parameter = selectedParameters[i];
+    const color = colourMapping[parameter] || colours[i]; // Use color mapping if available, otherwise use default colors
+
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, 10, 10);
+
+    ctx.fillStyle = "#333";
+    ctx.fillText(parameter, x + 15, y + 5);
+
+    y += 15;
+  }
+}
+return {drawLegend};
+}});
+
+</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div id="cell-152502c1" class="observablehq observablehq--block"></div>
+<!-------- Data -------->
+<div id="cell-62af5524" class="observablehq observablehq--block"></div>
+<!--------- Panels --------->
+<div id="cell-9372bd59" class="observablehq observablehq--block"></div>
+<!-------- Plots -------->
+<!-------- Input Panels -------->
+<div class="grid grid-cols-4" style="margin:5px">
+    <div class="card grid-colspan-1">
+        <span id="cell-ab2a190e" class="observablehq--loading"></span>
+        <span id="cell-c7cf93b5" class="observablehq--loading"></span>
+        <hr>
+        <span id="cell-c1f1d63b" class="observablehq--loading"></span>
+        <hr>
+        <span id="cell-2f483ec5" class="observablehq--loading"></span>
+        <hr>
+        <span id="cell-ce8c5b94" class="observablehq--loading"></span>
+        <hr>
+        <span id="cell-6952a4e9" class="observablehq--loading"></span>
+    </div>
+    <div class="card glyphmaps grid-colspan-3" style="padding:8px">
+     <span id="cell-f2a4f852" class="observablehq--loading"></span>
+    </div>
+</div>
+<!--------- Glyphmap Main Functions --------->
+<div id="cell-42c5a23b" class="observablehq observablehq--block"></div>
+<!--------- Glyphs Drawing Functions --------->
+<div id="cell-6995becf" class="observablehq observablehq--block"></div>
+<div id="cell-bb32aca9" class="observablehq observablehq--block"></div>
+<div id="cell-86cb36e7" class="observablehq observablehq--block"></div>
+<div id="cell-11670f03" class="observablehq observablehq--block"></div>
+<div id="cell-09db6ed8" class="observablehq observablehq--block"></div>
+<div id="cell-6c477c3c" class="observablehq observablehq--block"></div>
+<!--------- Glyphmaps Helper Functions --------->
+<div id="cell-5a876208" class="observablehq observablehq--block"></div>
+<div id="cell-eac29cab" class="observablehq observablehq--block"></div>
+<div id="cell-f8435c66" class="observablehq observablehq--block"></div>
+<div id="cell-9349a2dd" class="observablehq observablehq--block"></div>
+<!--------- Dashboard helpers --------->
+<div id="cell-19644d7a" class="observablehq observablehq--block"></div>
+<div id="cell-1c1236d5" class="observablehq observablehq--block"></div>
+<div id="cell-59ea64eb" class="observablehq observablehq--block"></div>
+</main>
+</div>

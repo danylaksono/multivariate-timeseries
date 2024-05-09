@@ -63,7 +63,8 @@ import {define} from "./_observablehq/client.js";
 import {registerFile, FileAttachment} from "./_observablehq/stdlib.js";
 import {registerTable} from "./_observablehq/stdlib/duckdb.js";
 
-registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1713799222700});
+registerFile("./data/data_processing.csv", {"name":"./data/data_processing.csv","mimeType":"text/csv","path":"./_file/data/data_processing.e3b0c442.csv","lastModified":1715262920491});
+registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1715262907379});
 registerTable("scenariosdb", FileAttachment("./data/formatted_cbe_scenarios.csv"));
 
 define({id: "7ca53046", inputs: ["sql"], outputs: ["alldata"], body: async (sql) => {
@@ -80,17 +81,21 @@ GROUP BY budget, year, lsoa, technology`;
 return {alldata};
 }});
 
-define({id: "5924fd8a", inputs: ["FileAttachment","view","Inputs"], outputs: ["scenarios","searched"], body: async (FileAttachment,view,Inputs) => {
+define({id: "d285a8ce", inputs: ["FileAttachment","view","Inputs","display"], outputs: ["scenarios","cbe_scenarios","searched"], body: async (FileAttachment,view,Inputs,display) => {
 const scenarios = await FileAttachment(
   "./data/formatted_cbe_scenarios.csv"
 ).csv({
   typed: true,
 });
 
+const cbe_scenarios = await FileAttachment("./data/data_processing.csv").csv({
+  typed: true,
+});
+
 const searched = view(Inputs.search(scenarios));
 
-// display(searched);
-return {scenarios,searched};
+display(cbe_scenarios);
+return {scenarios,cbe_scenarios,searched};
 }});
 
 define({id: "a3f98762", inputs: ["display","Inputs","searched"], body: (display,Inputs,searched) => {
@@ -252,8 +257,13 @@ display(
     <li class="observablehq-link"><a href="./">Multivariate Timeseries</a></li>
   </ol>
   <ol>
+    <section class="observablehq-section-active">
+      <summary>Time-series Gridded-glyphmaps</summary>
+      <ol>
     <li class="observablehq-link observablehq-link-active"><a href="./data_exploration">Data Exploration</a></li>
-    <li class="observablehq-link"><a href="./glyph_designs">Glyph Design</a></li>
+    <li class="observablehq-link"><a href="./dashboard">Dashboard</a></li>
+      </ol>
+    </section>
   </ol>
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
@@ -274,7 +284,7 @@ display(
 <h2 id="exploratory-data-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#exploratory-data-analysis">Exploratory data analysis</a></h2>
 <p>Before going through the glyph design, we'll explore the data to see what it contains, how many variables, etc.
 The following displays all the data:</p>
-<div id="cell-5924fd8a" class="observablehq observablehq--block"></div>
+<div id="cell-d285a8ce" class="observablehq observablehq--block"></div>
 <div id="cell-a3f98762" class="observablehq observablehq--block"></div>
 <h2 id="group-by-budgets" tabindex="-1"><a class="observablehq-header-anchor" href="#group-by-budgets">Group by Budgets</a></h2>
 <p>The main variable to display is the <strong>budget</strong>, which represent each scenario's budget over time. We can see for example how the progression of one LSOA (Local Super Output Area) budget looks like over the years:</p>
@@ -289,7 +299,4 @@ The following displays all the data:</p>
 <div id="cell-256c88c9" class="observablehq observablehq--block"></div>
 <div id="cell-b69f4533" class="observablehq observablehq--block"></div>
 </main>
-<footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-04-22T15:20:28">Apr 22, 2024</a>.</div>
-</footer>
 </div>

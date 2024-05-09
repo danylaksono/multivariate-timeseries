@@ -16,7 +16,7 @@ import {define} from "./_observablehq/client.js";
 import {registerFile, FileAttachment} from "./_observablehq/stdlib.js";
 import {registerTable} from "./_observablehq/stdlib/duckdb.js";
 
-registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1713799222700});
+registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1715262907379});
 registerTable("scenariosdb", FileAttachment("./data/formatted_cbe_scenarios.csv"));
 
 define({id: "ff127602", outputs: ["dummyData"], body: () => {
@@ -114,7 +114,7 @@ function drawTimeseries(ctx, x, y, data = dummyData, padding = 2) {
 return {drawTimeseries};
 }});
 
-define({id: "738eeca8", inputs: ["dummyData"], outputs: ["drawTimeseries2"], body: (dummyData) => {
+define({id: "3654d9da", inputs: ["dummyData"], outputs: ["drawTimeseries2"], body: (dummyData) => {
 function drawTimeseries2(ctx, x, y, data = dummyData, padding = 2) {
   const cellSize = ctx.canvas.width;
   const centerX = x;
@@ -124,7 +124,7 @@ function drawTimeseries2(ctx, x, y, data = dummyData, padding = 2) {
   const radius = (cellSize - 2 * padding) / 2;
   const innerRadius = radius / 5;
 
-  const gapAngle = (3 * Math.PI) / 180; // 3 degree gap
+  const gapAngle = 0; // (3 * Math.PI) / 180; // 3 degree gap
 
   // sectors
   const numSectors = 3; // budget.length()
@@ -352,8 +352,13 @@ return {drawBarChart};
     <li class="observablehq-link"><a href="./">Multivariate Timeseries</a></li>
   </ol>
   <ol>
+    <section>
+      <summary>Time-series Gridded-glyphmaps</summary>
+      <ol>
     <li class="observablehq-link"><a href="./data_exploration">Data Exploration</a></li>
-    <li class="observablehq-link observablehq-link-active"><a href="./glyph_designs">Glyph Design</a></li>
+    <li class="observablehq-link"><a href="./dashboard">Dashboard</a></li>
+      </ol>
+    </section>
   </ol>
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
@@ -378,7 +383,7 @@ return {drawBarChart};
   <canvas id="glyph3" width="300" height="300"></canvas>
 </figure>
 <div id="cell-38ae203e" class="observablehq observablehq--block"></div>
-<div id="cell-738eeca8" class="observablehq observablehq--block"></div>
+<div id="cell-3654d9da" class="observablehq observablehq--block"></div>
 <div id="cell-035f8202" class="observablehq observablehq--block"></div>
 <hr>
 <h2 id="small-multiples" tabindex="-1"><a class="observablehq-header-anchor" href="#small-multiples">Small multiples</a></h2>
@@ -475,7 +480,4 @@ function drawCascadingPetal(ctx, length, angle, color1, color2) {
 }
 ``` -->
 </main>
-<footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-04-22T15:20:28">Apr 22, 2024</a>.</div>
-</footer>
 </div>

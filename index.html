@@ -26,7 +26,7 @@ import {define} from "./_observablehq/client.js";
 import {registerFile, FileAttachment} from "./_observablehq/stdlib.js";
 import {registerTable} from "./_observablehq/stdlib/duckdb.js";
 
-registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1713799222700});
+registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1715262907379});
 registerTable("scenarios", FileAttachment("./data/formatted_cbe_scenarios.csv"));
 
 define({id: "a1c613ad", inputs: ["display","Inputs","sql"], body: async (display,Inputs,sql) => {
@@ -49,8 +49,13 @@ group by year;
     <li class="observablehq-link observablehq-link-active"><a href="./">Multivariate Timeseries</a></li>
   </ol>
   <ol>
+    <section>
+      <summary>Time-series Gridded-glyphmaps</summary>
+      <ol>
     <li class="observablehq-link"><a href="./data_exploration">Data Exploration</a></li>
-    <li class="observablehq-link"><a href="./glyph_designs">Glyph Design</a></li>
+    <li class="observablehq-link"><a href="./dashboard">Dashboard</a></li>
+      </ol>
+    </section>
   </ol>
 </nav>
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
@@ -60,7 +65,4 @@ group by year;
 <div id="cell-a1c613ad" class="observablehq observablehq--block"></div>
 <div id="cell-aa2efb4b" class="observablehq observablehq--block"></div>
 </main>
-<footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-04-22T15:20:28">Apr 22, 2024</a>.</div>
-</footer>
 </div>

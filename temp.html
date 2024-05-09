@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Multivariate Timeseries</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+
+define({id: "738dceb6", outputs: ["appendRecordsAggrFn"], body: () => {
+function appendRecordsAggrFn(cell, row, weight, global, panel) {
+  if (!cell.records) cell.records = []; //if the cell doesn't currently have a records property, make one
+  cell.records.push(row);
+
+  if (!cell.records) cell.records = {}; //if the cell doesn't currently have a records property, make one
+  // cell.records.push(row); //append the record
+  const {
+    lsoa,
+    postcode,
+    lat,
+    lon,
+    budget,
+    year,
+    technology,
+    labour_cost,
+    material_cost,
+    total_cost,
+    ashp_carbon_saved,
+    ev_carbon_saved,
+    pv_carbon_saved,
+  } = row;
+
+  // aggregate the data by buget and year
+  // const key = `${row.technology}-${row.budget}-${row.year}`;
+  const key = `${row.budget}-${row.year}`;
+  if (!cell.records[key]) {
+    cell.records[key] = [];
+  }
+  cell.records[key].push({
+    labour_cost,
+    material_cost,
+    total_cost,
+    ashp_carbon_saved,
+    ev_carbon_saved,
+    pv_carbon_saved,
+  });
+  // console.log(cell.records);
+}
+return {appendRecordsAggrFn};
+}});
+
+define({id: "aa9e338b", outputs: ["postAggrFn"], body: () => {
+function postAggrFn(cells, cellSize, global, panel) {
+  // console.log("data", cells[0]);
+  const formattedData = {};
+  const startYear = 2024;
+  const endYear = 2034;
+  for (let year = startYear; year <= endYear; year++) {
+    for (const budget of ["capped500k", "capped15000k", "Uncapped"]) {
+      if (!formattedData[budget]) {
+        formattedData[budget] = [];
+      }
+      formattedData[budget].push({
+        year,
+        total_cost: 0,
+        ashp_carbonsaved: 0,
+        ev_carbonsaved: 0,
+        pv_carbonsaved: 0,
+      });
+    }
+  }
+  // console.log("formattedData", formattedData);
+
+  // // loop in cells
+  for (const cell of cells) {
+    if (!cell.formattedData) cell.formattedData = formattedData;
+    if (cell.records) {
+      // console.log(cell.records);
+      for (const [key, dataPoints] of Object.entries(cell.records)) {
+        // const [technology, budget, year] = key.split("-");
+        const [budget, year] = key.split("-");
+
+        // aggregate all values
+        const labourCost = dataPoints.reduce(
+          (sum, point) => sum + point.labour_cost,
+          0
+        );
+        const materialCost = dataPoints.reduce(
+          (sum, point) => sum + point.material_cost,
+          0
+        );
+        const totalCost = dataPoints.reduce(
+          (sum, point) => sum + point.total_cost,
+          0
+        );
+        const ashpCarbonSaved = dataPoints.reduce(
+          (sum, point) => sum + (point.ashp_carbon_saved || 0),
+          0
+        );
+        const evCarbonSaved = dataPoints.reduce(
+          (sum, point) => sum + (point.ev_carbon_saved || 0),
+          0
+        );
+        const pvCarbonSaved = dataPoints.reduce(
+          (sum, point) => sum + (point.pv_carbon_saved || 0),
+          0
+        );
+        // console.log(year);
+        const yearIndex = year - startYear;
+        cell.formattedData[budget][yearIndex] = {
+          year: parseInt(year),
+          labour_cost: labourCost,
+          material_cost: materialCost,
+          total_cost: totalCost,
+          ashp_carbonsaved: ashpCarbonSaved,
+          ev_carbonsaved: evCarbonSaved,
+          pv_carbonsaved: pvCarbonSaved,
+        };
+      }
+    }
+    // console.log(cell.formattedData);
+  }
+}
+return {postAggrFn};
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Multivariate Timeseries</a></li>
+  </ol>
+  <ol>
+    <section>
+      <summary>Time-series Gridded-glyphmaps</summary>
+      <ol>
+    <li class="observablehq-link"><a href="./data_exploration">Data Exploration</a></li>
+    <li class="observablehq-link"><a href="./dashboard">Dashboard</a></li>
+      </ol>
+    </section>
+  </ol>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type), h2:first-child, :not(h1) + h2">
+<nav>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div id="cell-738dceb6" class="observablehq observablehq--block"></div>
+<div id="cell-aa9e338b" class="observablehq observablehq--block"></div>
+</main>
+</div>
