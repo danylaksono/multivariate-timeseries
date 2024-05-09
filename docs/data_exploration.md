@@ -33,9 +33,13 @@ const scenarios = await FileAttachment(
   typed: true,
 });
 
+const cbe_scenarios = await FileAttachment("./data/data_processing.csv").csv({
+  typed: true,
+});
+
 const searched = view(Inputs.search(scenarios));
 
-// display(searched);
+display(cbe_scenarios);
 ```
 
 ```js

@@ -1,0 +1,956 @@
+{
+    "capped500k": {
+        "heat pumps": [
+            {
+                "year": 2024,
+                "total_cost": 4802.83,
+                "ashp_carbonsaved": 501.462963,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 4802.83,
+                "ashp_carbonsaved": 832.3245884,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 30926.85,
+                "ashp_carbonsaved": 11050.269030680001,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 5104.24,
+                "ashp_carbonsaved": 2241.0717587599997,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 17315.55,
+                "ashp_carbonsaved": 10037.00205516,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 11608.48,
+                "ashp_carbonsaved": 6467.313270000001,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 5104.24,
+                "ashp_carbonsaved": 3443.3746819999997,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 10208.48,
+                "ashp_carbonsaved": 7306.185458,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 4802.83,
+                "ashp_carbonsaved": 2575.2071836,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 5104.24,
+                "ashp_carbonsaved": 4072.528823,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 21622.61,
+                "ashp_carbonsaved": 22838.649971,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ],
+        "domestic pv": [
+            {
+                "year": 2024,
+                "total_cost": 5381.6,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 574.1750000000001
+            },
+            {
+                "year": 2025,
+                "total_cost": 6227.280000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 664.4025
+            },
+            {
+                "year": 2026,
+                "total_cost": 3459.6,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 369.1125
+            },
+            {
+                "year": 2027,
+                "total_cost": 3244.34,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 346.1455
+            },
+            {
+                "year": 2028,
+                "total_cost": 3459.6,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 369.1125
+            },
+            {
+                "year": 2029,
+                "total_cost": 18220.559999999998,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1943.9924999999998
+            },
+            {
+                "year": 2030,
+                "total_cost": 3075.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 328.1
+            },
+            {
+                "year": 2031,
+                "total_cost": 3244.34,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 346.1455
+            },
+            {
+                "year": 2032,
+                "total_cost": 6227.280000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 664.4025
+            },
+            {
+                "year": 2033,
+                "total_cost": 3075.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 328.1
+            },
+            {
+                "year": 2034,
+                "total_cost": 30659.739999999998,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 3271.157
+            }
+        ],
+        "insulation": [
+            {
+                "year": 2024,
+                "total_cost": 1693.4,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 654.95,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 408.69,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 409.5,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 930.11,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 4204.94,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 3188.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 4543.43,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 830.85,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 425.57,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 3080.3099999999995,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ],
+        "off street ev chargers": [
+            {
+                "year": 2024,
+                "total_cost": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 2037.449048,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 1616,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 3381.7431502,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 4726.0372523999995,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 6070.331354599999,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 8758.919559,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    "capped15000k": {
+        "heat pumps": [
+            {
+                "year": 2024,
+                "total_cost": 193961.12999999998,
+                "ashp_carbonsaved": 28583.388887400004,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 125904.58000000005,
+                "ashp_carbonsaved": 30796.009769519995,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 27222.619999999995,
+                "ashp_carbonsaved": 9305.489709919999,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 11909.89,
+                "ashp_carbonsaved": 5229.16743716,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 34825.45,
+                "ashp_carbonsaved": 16424.18518132,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 34329.68,
+                "ashp_carbonsaved": 22635.596444999996,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 36532.509999999995,
+                "ashp_carbonsaved": 26399.205894800005,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 19318.379999999997,
+                "ashp_carbonsaved": 15830.0684914,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 10208.48,
+                "ashp_carbonsaved": 7725.621552,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 5104.24,
+                "ashp_carbonsaved": 4072.528823,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 20115.55,
+                "ashp_carbonsaved": 15701.571855999999,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ],
+        "domestic pv": [
+            {
+                "year": 2024,
+                "total_cost": 127236.4,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 13575.137500000003
+            },
+            {
+                "year": 2025,
+                "total_cost": 35733.82,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 3812.522
+            },
+            {
+                "year": 2026,
+                "total_cost": 8841.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 943.2875
+            },
+            {
+                "year": 2027,
+                "total_cost": 14914.720000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1591.2849999999999
+            },
+            {
+                "year": 2028,
+                "total_cost": 23740.539999999997,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 2532.9320000000002
+            },
+            {
+                "year": 2029,
+                "total_cost": 3720.99,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 397.00100000000003
+            },
+            {
+                "year": 2030,
+                "total_cost": 26861.870000000003,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 2865.9535
+            },
+            {
+                "year": 2031,
+                "total_cost": 6919.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 738.225
+            },
+            {
+                "year": 2032,
+                "total_cost": 9994.4,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1066.325
+            },
+            {
+                "year": 2033,
+                "total_cost": 25278.139999999996,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 2696.982
+            },
+            {
+                "year": 2034,
+                "total_cost": 4228.4,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 451.1375
+            }
+        ],
+        "insulation": [
+            {
+                "year": 2024,
+                "total_cost": 34352.44,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 88025.55000000002,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 7616.759999999999,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 110761.76999999999,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 1017.31,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 68542.56,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 20600.1,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 4598.99,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 20946.77,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 7315.530000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 931.02,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ],
+        "off street ev chargers": [
+            {
+                "year": 2024,
+                "total_cost": 1616,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 2037.449048,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    "Uncapped": {
+        "heat pumps": [
+            {
+                "year": 2024,
+                "total_cost": 25822.61,
+                "ashp_carbonsaved": 4011.7037033999995,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 36828.27,
+                "ashp_carbonsaved": 8323.245883679998,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 42535.33,
+                "ashp_carbonsaved": 14539.82767208,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 32025.439999999995,
+                "ashp_carbonsaved": 13446.430552639998,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 24918.379999999997,
+                "ashp_carbonsaved": 11861.91151984,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 31724.03,
+                "ashp_carbonsaved": 18324.054265,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 39132.49999999999,
+                "ashp_carbonsaved": 26399.205895199997,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 20718.37,
+                "ashp_carbonsaved": 15830.0684918,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 45938.159999999996,
+                "ashp_carbonsaved": 34765.2969822,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 15312.72,
+                "ashp_carbonsaved": 12217.586469,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 22721.199999999997,
+                "ashp_carbonsaved": 21411.234349,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ],
+        "domestic pv": [
+            {
+                "year": 2024,
+                "total_cost": 12116.29,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1292.714
+            },
+            {
+                "year": 2025,
+                "total_cost": 9025.720000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 962.9735000000001
+            },
+            {
+                "year": 2026,
+                "total_cost": 5965.89,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 636.514
+            },
+            {
+                "year": 2027,
+                "total_cost": 6888.45,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 734.944
+            },
+            {
+                "year": 2028,
+                "total_cost": 4612.8,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 492.15000000000003
+            },
+            {
+                "year": 2029,
+                "total_cost": 7457.36,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 795.6425
+            },
+            {
+                "year": 2030,
+                "total_cost": 8948.83,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 954.7710000000001
+            },
+            {
+                "year": 2031,
+                "total_cost": 4705.0599999999995,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 501.993
+            },
+            {
+                "year": 2032,
+                "total_cost": 10055.91,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1072.8870000000002
+            },
+            {
+                "year": 2033,
+                "total_cost": 4474.42,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 477.38550000000004
+            },
+            {
+                "year": 2034,
+                "total_cost": 11285.98,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1204.127
+            }
+        ],
+        "insulation": [
+            {
+                "year": 2024,
+                "total_cost": 8847.54,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 4700,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 8231.21,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 3206.7000000000003,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 3902.52,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 1655.96,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 34450.38,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 34450.38,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 34450.38,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 34450.38,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 17225.19,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ],
+        "off street ev chargers": [
+            {
+                "year": 2024,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2025,
+                "total_cost": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 3381.7431502,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2026,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2027,
+                "total_cost": 1062,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 12140.662709199998,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2028,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2029,
+                "total_cost": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 8758.919559,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2030,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2031,
+                "total_cost": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 9895.0349274,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2032,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2033,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "year": 2034,
+                "total_cost": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    }
+}

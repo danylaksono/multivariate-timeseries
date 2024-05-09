@@ -1,0 +1,986 @@
+[
+    {
+        "name": "capped500k - heat pumps",
+        "data": [
+            {
+                "time": 2024,
+                "heat pumps": 4802.83,
+                "ashp_carbonsaved": 501.462963,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "heat pumps": 4802.83,
+                "ashp_carbonsaved": 832.3245884,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "heat pumps": 30926.85,
+                "ashp_carbonsaved": 11050.269030680001,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "heat pumps": 5104.24,
+                "ashp_carbonsaved": 2241.0717587599997,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "heat pumps": 17315.55,
+                "ashp_carbonsaved": 10037.00205516,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "heat pumps": 11608.48,
+                "ashp_carbonsaved": 6467.313270000001,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "heat pumps": 5104.24,
+                "ashp_carbonsaved": 3443.3746819999997,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "heat pumps": 10208.48,
+                "ashp_carbonsaved": 7306.185458,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "heat pumps": 4802.83,
+                "ashp_carbonsaved": 2575.2071836,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "heat pumps": 5104.24,
+                "ashp_carbonsaved": 4072.528823,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "heat pumps": 21622.61,
+                "ashp_carbonsaved": 22838.649971,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    {
+        "name": "capped500k - domestic pv",
+        "data": [
+            {
+                "time": 2024,
+                "domestic pv": 5381.6,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 574.1750000000001
+            },
+            {
+                "time": 2025,
+                "domestic pv": 6227.280000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 664.4025
+            },
+            {
+                "time": 2026,
+                "domestic pv": 3459.6,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 369.1125
+            },
+            {
+                "time": 2027,
+                "domestic pv": 3244.34,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 346.1455
+            },
+            {
+                "time": 2028,
+                "domestic pv": 3459.6,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 369.1125
+            },
+            {
+                "time": 2029,
+                "domestic pv": 18220.559999999998,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1943.9924999999998
+            },
+            {
+                "time": 2030,
+                "domestic pv": 3075.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 328.1
+            },
+            {
+                "time": 2031,
+                "domestic pv": 3244.34,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 346.1455
+            },
+            {
+                "time": 2032,
+                "domestic pv": 6227.280000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 664.4025
+            },
+            {
+                "time": 2033,
+                "domestic pv": 3075.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 328.1
+            },
+            {
+                "time": 2034,
+                "domestic pv": 30659.739999999998,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 3271.157
+            }
+        ]
+    },
+    {
+        "name": "capped500k - insulation",
+        "data": [
+            {
+                "time": 2024,
+                "insulation": 1693.4,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "insulation": 654.95,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "insulation": 408.69,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "insulation": 409.5,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "insulation": 930.11,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "insulation": 4204.94,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "insulation": 3188.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "insulation": 4543.43,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "insulation": 830.85,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "insulation": 425.57,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "insulation": 3080.3099999999995,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    {
+        "name": "capped500k - off street ev chargers",
+        "data": [
+            {
+                "time": 2024,
+                "off street ev chargers": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 2037.449048,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "off street ev chargers": 1616,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 3381.7431502,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "off street ev chargers": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 4726.0372523999995,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "off street ev chargers": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 6070.331354599999,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "off street ev chargers": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 8758.919559,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    {
+        "name": "capped15000k - heat pumps",
+        "data": [
+            {
+                "time": 2024,
+                "heat pumps": 193961.12999999998,
+                "ashp_carbonsaved": 28583.388887400004,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "heat pumps": 125904.58000000005,
+                "ashp_carbonsaved": 30796.009769519995,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "heat pumps": 27222.619999999995,
+                "ashp_carbonsaved": 9305.489709919999,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "heat pumps": 11909.89,
+                "ashp_carbonsaved": 5229.16743716,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "heat pumps": 34825.45,
+                "ashp_carbonsaved": 16424.18518132,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "heat pumps": 34329.68,
+                "ashp_carbonsaved": 22635.596444999996,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "heat pumps": 36532.509999999995,
+                "ashp_carbonsaved": 26399.205894800005,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "heat pumps": 19318.379999999997,
+                "ashp_carbonsaved": 15830.0684914,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "heat pumps": 10208.48,
+                "ashp_carbonsaved": 7725.621552,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "heat pumps": 5104.24,
+                "ashp_carbonsaved": 4072.528823,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "heat pumps": 20115.55,
+                "ashp_carbonsaved": 15701.571855999999,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    {
+        "name": "capped15000k - domestic pv",
+        "data": [
+            {
+                "time": 2024,
+                "domestic pv": 127236.4,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 13575.137500000003
+            },
+            {
+                "time": 2025,
+                "domestic pv": 35733.82,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 3812.522
+            },
+            {
+                "time": 2026,
+                "domestic pv": 8841.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 943.2875
+            },
+            {
+                "time": 2027,
+                "domestic pv": 14914.720000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1591.2849999999999
+            },
+            {
+                "time": 2028,
+                "domestic pv": 23740.539999999997,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 2532.9320000000002
+            },
+            {
+                "time": 2029,
+                "domestic pv": 3720.99,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 397.00100000000003
+            },
+            {
+                "time": 2030,
+                "domestic pv": 26861.870000000003,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 2865.9535
+            },
+            {
+                "time": 2031,
+                "domestic pv": 6919.2,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 738.225
+            },
+            {
+                "time": 2032,
+                "domestic pv": 9994.4,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1066.325
+            },
+            {
+                "time": 2033,
+                "domestic pv": 25278.139999999996,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 2696.982
+            },
+            {
+                "time": 2034,
+                "domestic pv": 4228.4,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 451.1375
+            }
+        ]
+    },
+    {
+        "name": "capped15000k - insulation",
+        "data": [
+            {
+                "time": 2024,
+                "insulation": 34352.44,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "insulation": 88025.55000000002,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "insulation": 7616.759999999999,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "insulation": 110761.76999999999,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "insulation": 1017.31,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "insulation": 68542.56,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "insulation": 20600.1,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "insulation": 4598.99,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "insulation": 20946.77,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "insulation": 7315.530000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "insulation": 931.02,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    {
+        "name": "capped15000k - off street ev chargers",
+        "data": [
+            {
+                "time": 2024,
+                "off street ev chargers": 1616,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 2037.449048,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    {
+        "name": "Uncapped - heat pumps",
+        "data": [
+            {
+                "time": 2024,
+                "heat pumps": 25822.61,
+                "ashp_carbonsaved": 4011.7037033999995,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "heat pumps": 36828.27,
+                "ashp_carbonsaved": 8323.245883679998,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "heat pumps": 42535.33,
+                "ashp_carbonsaved": 14539.82767208,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "heat pumps": 32025.439999999995,
+                "ashp_carbonsaved": 13446.430552639998,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "heat pumps": 24918.379999999997,
+                "ashp_carbonsaved": 11861.91151984,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "heat pumps": 31724.03,
+                "ashp_carbonsaved": 18324.054265,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "heat pumps": 39132.49999999999,
+                "ashp_carbonsaved": 26399.205895199997,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "heat pumps": 20718.37,
+                "ashp_carbonsaved": 15830.0684918,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "heat pumps": 45938.159999999996,
+                "ashp_carbonsaved": 34765.2969822,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "heat pumps": 15312.72,
+                "ashp_carbonsaved": 12217.586469,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "heat pumps": 22721.199999999997,
+                "ashp_carbonsaved": 21411.234349,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    {
+        "name": "Uncapped - domestic pv",
+        "data": [
+            {
+                "time": 2024,
+                "domestic pv": 12116.29,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1292.714
+            },
+            {
+                "time": 2025,
+                "domestic pv": 9025.720000000001,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 962.9735000000001
+            },
+            {
+                "time": 2026,
+                "domestic pv": 5965.89,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 636.514
+            },
+            {
+                "time": 2027,
+                "domestic pv": 6888.45,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 734.944
+            },
+            {
+                "time": 2028,
+                "domestic pv": 4612.8,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 492.15000000000003
+            },
+            {
+                "time": 2029,
+                "domestic pv": 7457.36,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 795.6425
+            },
+            {
+                "time": 2030,
+                "domestic pv": 8948.83,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 954.7710000000001
+            },
+            {
+                "time": 2031,
+                "domestic pv": 4705.0599999999995,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 501.993
+            },
+            {
+                "time": 2032,
+                "domestic pv": 10055.91,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1072.8870000000002
+            },
+            {
+                "time": 2033,
+                "domestic pv": 4474.42,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 477.38550000000004
+            },
+            {
+                "time": 2034,
+                "domestic pv": 11285.98,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 1204.127
+            }
+        ]
+    },
+    {
+        "name": "Uncapped - insulation",
+        "data": [
+            {
+                "time": 2024,
+                "insulation": 8847.54,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "insulation": 4700,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "insulation": 8231.21,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "insulation": 3206.7000000000003,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "insulation": 3902.52,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "insulation": 1655.96,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "insulation": 34450.38,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "insulation": 34450.38,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "insulation": 34450.38,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "insulation": 34450.38,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "insulation": 17225.19,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    },
+    {
+        "name": "Uncapped - off street ev chargers",
+        "data": [
+            {
+                "time": 2024,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2025,
+                "off street ev chargers": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 3381.7431502,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2026,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2027,
+                "off street ev chargers": 1062,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 12140.662709199998,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2028,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2029,
+                "off street ev chargers": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 8758.919559,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2030,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2031,
+                "off street ev chargers": 531,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 9895.0349274,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2032,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2033,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            },
+            {
+                "time": 2034,
+                "off street ev chargers": 0,
+                "ashp_carbonsaved": 0,
+                "ev_carbonsaved": 0,
+                "pv_carbonsaved": 0
+            }
+        ]
+    }
+]

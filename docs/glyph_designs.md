@@ -119,7 +119,7 @@ function drawTimeseries2(ctx, x, y, data = dummyData, padding = 2) {
   const radius = (cellSize - 2 * padding) / 2;
   const innerRadius = radius / 5;
 
-  const gapAngle = (3 * Math.PI) / 180; // 3 degree gap
+  const gapAngle = 0; // (3 * Math.PI) / 180; // 3 degree gap
 
   // sectors
   const numSectors = 3; // budget.length()
