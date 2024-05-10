@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Dashboard | Multivariate Timeseries</title>
+<title>Scenario Visualisation | Multivariate Timeseries</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.css">
@@ -13,13 +13,13 @@
 <link rel="modulepreload" href="./_observablehq/runtime.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/statsbreaks@1.0.6/dist/index.min.js">
 <link rel="modulepreload" href="./_import/components/gridded-glyphmaps/index.min.733459fe.js">
+<link rel="modulepreload" href="./_npm/@mantine/core@7.9.1/_esm.js">
 <link rel="modulepreload" href="./_import/components/helper.0f2b5756.js">
 <link rel="modulepreload" href="./_import/components/config.30fb7f3d.js">
 <link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
@@ -50,39 +50,99 @@
 <link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/react-remove-scroll@2.5.9/_esm.js">
+<link rel="modulepreload" href="./_npm/react@18.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/react@18.3.1/jsx-runtime._esm.js">
+<link rel="modulepreload" href="./_npm/@mantine/hooks@7.9.1/_esm.js">
+<link rel="modulepreload" href="./_npm/clsx@2.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/react-dom@18.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/@floating-ui/react@0.26.13/_esm.js">
+<link rel="modulepreload" href="./_npm/react-textarea-autosize@8.5.3/_esm.js">
+<link rel="modulepreload" href="./_npm/react-number-format@5.3.4/_esm.js">
 <link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
 <link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/tslib@2.6.2/_esm.js">
+<link rel="modulepreload" href="./_npm/react-remove-scroll-bar@2.3.6/constants._esm.js">
+<link rel="modulepreload" href="./_npm/use-callback-ref@1.3.2/_esm.js">
+<link rel="modulepreload" href="./_npm/use-sidecar@1.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/react-remove-scroll-bar@2.3.6/_esm.js">
+<link rel="modulepreload" href="./_npm/react-style-singleton@2.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/scheduler@0.23.2/_esm.js">
+<link rel="modulepreload" href="./_npm/@floating-ui/react@0.26.13/utils._esm.js">
+<link rel="modulepreload" href="./_npm/@floating-ui/utils@0.2.2/_esm.js">
+<link rel="modulepreload" href="./_npm/@floating-ui/react-dom@2.0.9/_esm.js">
+<link rel="modulepreload" href="./_npm/@floating-ui/utils@0.2.2/dom._esm.js">
+<link rel="modulepreload" href="./_npm/tabbable@6.2.0/_esm.js">
+<link rel="modulepreload" href="./_npm/@babel/runtime@7.24.5/helpers/esm/extends._esm.js">
+<link rel="modulepreload" href="./_npm/@babel/runtime@7.24.5/helpers/esm/objectWithoutPropertiesLoose._esm.js">
+<link rel="modulepreload" href="./_npm/react@16.14.0/_esm.js">
+<link rel="modulepreload" href="./_npm/use-latest@1.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/use-composed-ref@1.3.0/_esm.js">
 <link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/detect-node-es@1.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/get-nonce@1.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/@floating-ui/dom@1.6.5/_esm.js">
+<link rel="modulepreload" href="./_npm/object-assign@4.1.1/_esm.js">
+<link rel="modulepreload" href="./_npm/use-isomorphic-layout-effect@1.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/@floating-ui/core@1.6.1/_esm.js">
 <script type="module">
 
 import {define} from "./_observablehq/client.js";
 import {registerFile} from "./_observablehq/stdlib.js";
 
-registerFile("./data/cbe_scenarios_reformatted.csv", {"name":"./data/cbe_scenarios_reformatted.csv","mimeType":"text/csv","path":"./_file/data/cbe_scenarios_reformatted.cd82bfef.csv","lastModified":1715300961553});
+registerFile("./data/cbe_scenarios_reformatted.csv", {"name":"./data/cbe_scenarios_reformatted.csv","mimeType":"text/csv","path":"./_file/data/cbe_scenarios_reformatted.cd82bfef.csv","lastModified":1715333910263});
 
-define({id: "152502c1", outputs: ["d3","Mutable","statsbreaks","glyphMap","processDataCumulative","processData","colours","colourMapping"], body: async () => {
-const [d3, {Mutable}, statsbreaks, {glyphMap}, {processDataCumulative, processData}, {colours, colourMapping}] = await Promise.all([import("./_npm/d3@7.9.0/_esm.js"), import("./_observablehq/stdlib.js"), import("https://cdn.jsdelivr.net/npm/statsbreaks@1.0.6/dist/index.min.js"), import("./_import/components/gridded-glyphmaps/index.min.733459fe.js"), import("./_import/components/helper.0f2b5756.js"), import("./_import/components/config.30fb7f3d.js")]);
+define({id: "d6060284", outputs: ["d3","Mutable","glyphMap","Slider","MultiSelect","MantineProvider","processDataCumulative","processData","colours","colourMapping"], body: async () => {
+const [d3, {Mutable}, {glyphMap}, {Slider, MultiSelect, MantineProvider}, {processDataCumulative, processData}, {colours, colourMapping}] = await Promise.all([import("./_npm/d3@7.9.0/_esm.js"), import("./_observablehq/stdlib.js"), import("./_import/components/gridded-glyphmaps/index.min.733459fe.js"), import("./_npm/@mantine/core@7.9.1/_esm.js"), import("./_import/components/helper.0f2b5756.js"), import("./_import/components/config.30fb7f3d.js")]);
 
 
-return {d3,Mutable,statsbreaks,glyphMap,processDataCumulative,processData,colours,colourMapping};
+return {d3,Mutable,glyphMap,Slider,MultiSelect,MantineProvider,processDataCumulative,processData,colours,colourMapping};
 }});
 
-define({id: "bf4720db", inputs: ["FileAttachment"], outputs: ["griddedDataFile","griddedData"], body: (FileAttachment) => {
+define({id: "296ee54a", inputs: ["FileAttachment"], outputs: ["griddedDataFile"], body: (FileAttachment) => {
 const griddedDataFile = FileAttachment(
   "./data/cbe_scenarios_reformatted.csv"
 ).csv({
   typed: true,
 });
-
-const griddedData = griddedDataFile.filter((d) => d.lat !== undefined);
-return {griddedDataFile,griddedData};
+return {griddedDataFile};
 }});
 
-define({id: "9372bd59", inputs: ["Inputs","Generators"], outputs: ["carbonSavedInput","carbonSaved","costsInput","costs","budgetToVisualiseInput","budgetToVisualise","glyphModeInput","glyphMode","gridSizeInput","gridSize","cumulativeInput","cumulative"], body: (Inputs,Generators) => {
+define({id: "6f914915", inputs: ["griddedDataFile"], outputs: ["griddedData"], body: (griddedDataFile) => {
+const griddedData = griddedDataFile.filter((d) => d.lat !== null);
+return {griddedData};
+}});
+
+define({id: "221ac730", inputs: ["Mutable"], outputs: ["useState","selected","setSelected","nnvalue","setNN"], body: (Mutable) => {
+function useState(value) {
+  const state = Mutable(value);
+  const setState = (value) => (state.value = value);
+  return [state, setState];
+}
+const [selected, setSelected] = useState(["react"]);
+const [nnvalue, setNN] = useState(0);
+return {useState,selected,setSelected,nnvalue,setNN};
+}});
+
+define({id: "db29c5df", inputs: ["html","Generators"], outputs: ["n","nn"], body: (html,Generators) => {
+const n = html`<input type="range" step="10" min="10" max="150" />`;
+const nn = Generators.input(n);
+return {n,nn};
+}});
+
+define({id: "97227025", body: () => {
+// setNN(nn);
+// html`<div class="card" style="display: grid; gap: 0.5rem;">
+//   <div>Enter your name: ${n}</div>
+//   <div>Hi <b>${nnvalue}</b>!</div>
+// </div>`
+}});
+
+define({id: "a93a3b2f", inputs: ["Inputs","Generators"], outputs: ["carbonSavedInput","carbonSaved","costsInput","costs","budgetToVisualiseInput","budgetToVisualise","glyphModeInput","glyphMode","gridSizeInput","gridSize","cumulativeInput","cumulative"], body: (Inputs,Generators) => {
 const carbonSavedInput = Inputs.checkbox(
   ["ashp_carbonsaved", "ev_carbonsaved", "pv_carbonsaved"],
   {
-    label: "Carbon Saved",
+    // label: "Carbon Saved",
     value: ["ashp_carbonsaved", "pv_carbonsaved", "ev_carbonsaved"],
   }
 );
@@ -91,15 +151,15 @@ const carbonSaved = Generators.input(carbonSavedInput);
 const costsInput = Inputs.checkbox(
   ["labour_cost", "material_cost", "total_cost"],
   {
-    label: "Costs",
+    // label: "Costs",
   }
 );
 const costs = Generators.input(costsInput);
 
 const budgetToVisualiseInput = Inputs.radio(
-  ["capped15000k", "capped500k", "Uncapped"],
+  ["capped500k", "capped15000k", "Uncapped"],
   {
-    label: "Budgets",
+    // label: "Budgets",
     value: "capped15000k",
   }
 );
@@ -120,13 +180,12 @@ const glyphModeInput = Inputs.select(
 );
 const glyphMode = Generators.input(glyphModeInput);
 
-const gridSizeInput = Inputs.radio([20, 30, 40, 50, 60, 80, 100], {
-  label: "Grid Size",
-  value: 60,
-});
+const gridSizeInput = Inputs.range([10, 100], { step: 10, value: 60 });
+gridSizeInput.number.style["max-width"] = "50px";
+//gridSizeInput.querySelector("label").style["min-width"] = "160px";
 const gridSize = Generators.input(gridSizeInput);
 
-const cumulativeInput = Inputs.toggle({ label: "Cumulative?", value: false });
+const cumulativeInput = Inputs.toggle({ value: false });
 const cumulative = Generators.input(cumulativeInput);
 return {carbonSavedInput,carbonSaved,costsInput,costs,budgetToVisualiseInput,budgetToVisualise,glyphModeInput,glyphMode,gridSizeInput,gridSize,cumulativeInput,cumulative};
 }});
@@ -721,27 +780,45 @@ return {drawLegend};
 </script>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div id="cell-152502c1" class="observablehq observablehq--block"></div>
+<div id="cell-d6060284" class="observablehq observablehq--block"></div>
+<!-------- Stylesheets -------->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+<style>
+/* body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+} */
+</style>
 <!-------- Data -------->
-<div id="cell-bf4720db" class="observablehq observablehq--block"></div>
+<div id="cell-296ee54a" class="observablehq observablehq--block"></div>
+<div id="cell-6f914915" class="observablehq observablehq--block"></div>
 <!--------- Panels --------->
-<div id="cell-9372bd59" class="observablehq observablehq--block"></div>
+<div id="cell-221ac730" class="observablehq observablehq--block"></div>
+<div id="cell-db29c5df" class="observablehq observablehq--block"></div>
+<div id="cell-97227025" class="observablehq observablehq--block"></div>
+<div id="cell-a93a3b2f" class="observablehq observablehq--block"></div>
 <!-------- Plots -------->
 <!-------- Input Panels -------->
 <div class="grid grid-cols-4" style="margin:5px">
     <div class="card grid-colspan-1">
+        <h2 style="padding-bottom:15px">Carbon saved: </h2>
         <span id="cell-ab2a190e" class="observablehq--loading"></span>
+        <h2 style="padding-top:15px;padding-bottom:15px">Costs: </h2>
         <span id="cell-c7cf93b5" class="observablehq--loading"></span>
         <hr>
+        <h2 style="padding-top:15px; padding-bottom:15px">Budgets: </h2>
         <span id="cell-c1f1d63b" class="observablehq--loading"></span>
         <hr>
+        <h2 style="padding-bottom:15px">Glyph mode: </h2>
         <span id="cell-2f483ec5" class="observablehq--loading"></span>
         <hr>
-        <span id="cell-ce8c5b94" class="observablehq--loading"></span>
+        <h2 style="padding-bottom:15px">Grid Size: </h2>
+        <span><span id="cell-ce8c5b94" class="observablehq--loading"></span> </span>
         <hr>
-        <span id="cell-6952a4e9" class="observablehq--loading"></span>
+        <h2 style="padding-bottom:15px">Cumulative? <span id="cell-6952a4e9" class="observablehq--loading"></span></h2>
     </div>
-    <div class="card glyphmaps grid-colspan-3" style="padding:8px">
+    <div class="card glyphmaps grid-colspan-3" style="padding:8px, height:100vh;">
      <span id="cell-f2a4f852" class="observablehq--loading"></span>
     </div>
 </div>
