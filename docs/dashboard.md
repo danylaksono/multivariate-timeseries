@@ -1,5 +1,5 @@
 ---
-title: Dashboard
+title: Scenario Visualisation
 theme: dashboard
 sidebar: false
 toc: false
@@ -8,12 +8,26 @@ toc: false
 ```js
 import * as d3 from "npm:d3";
 import { Mutable } from "npm:@observablehq/stdlib";
-import * as statsbreaks from "https://cdn.jsdelivr.net/npm/statsbreaks@1.0.6/dist/index.min.js";
 import { glyphMap } from "./components/gridded-glyphmaps/index.min.js";
+import { Slider, MultiSelect, MantineProvider } from "npm:@mantine/core";
 
 import { processDataCumulative, processData } from "./components/helper.js";
 import { colours, colourMapping } from "./components/config.js";
 ```
+
+<!-------- Stylesheets -------->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
+>
+
+<style>
+/* body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+} */
+</style>
 
 <!-------- Data -------->
 
@@ -23,17 +37,42 @@ const griddedDataFile = FileAttachment(
 ).csv({
   typed: true,
 });
+```
 
-const griddedData = griddedDataFile.filter((d) => d.lat !== undefined);
+```js
+const griddedData = griddedDataFile.filter((d) => d.lat !== null);
 ```
 
 <!--------- Panels --------->
 
 ```js
+function useState(value) {
+  const state = Mutable(value);
+  const setState = (value) => (state.value = value);
+  return [state, setState];
+}
+const [selected, setSelected] = useState(["react"]);
+const [nnvalue, setNN] = useState(0);
+```
+
+```js
+const n = html`<input type="range" step="10" min="10" max="150" />`;
+const nn = Generators.input(n);
+```
+
+```js
+// setNN(nn);
+// html`<div class="card" style="display: grid; gap: 0.5rem;">
+//   <div>Enter your name: ${n}</div>
+//   <div>Hi <b>${nnvalue}</b>!</div>
+// </div>`
+```
+
+```js
 const carbonSavedInput = Inputs.checkbox(
   ["ashp_carbonsaved", "ev_carbonsaved", "pv_carbonsaved"],
   {
-    label: "Carbon Saved",
+    // label: "Carbon Saved",
     value: ["ashp_carbonsaved", "pv_carbonsaved", "ev_carbonsaved"],
   }
 );
@@ -42,15 +81,15 @@ const carbonSaved = Generators.input(carbonSavedInput);
 const costsInput = Inputs.checkbox(
   ["labour_cost", "material_cost", "total_cost"],
   {
-    label: "Costs",
+    // label: "Costs",
   }
 );
 const costs = Generators.input(costsInput);
 
 const budgetToVisualiseInput = Inputs.radio(
-  ["capped15000k", "capped500k", "Uncapped"],
+  ["capped500k", "capped15000k", "Uncapped"],
   {
-    label: "Budgets",
+    // label: "Budgets",
     value: "capped15000k",
   }
 );
@@ -71,13 +110,12 @@ const glyphModeInput = Inputs.select(
 );
 const glyphMode = Generators.input(glyphModeInput);
 
-const gridSizeInput = Inputs.radio([20, 30, 40, 50, 60, 80, 100], {
-  label: "Grid Size",
-  value: 60,
-});
+const gridSizeInput = Inputs.range([10, 100], { step: 10, value: 60 });
+gridSizeInput.number.style["max-width"] = "50px";
+//gridSizeInput.querySelector("label").style["min-width"] = "160px";
 const gridSize = Generators.input(gridSizeInput);
 
-const cumulativeInput = Inputs.toggle({ label: "Cumulative?", value: false });
+const cumulativeInput = Inputs.toggle({ value: false });
 const cumulative = Generators.input(cumulativeInput);
 ```
 
@@ -86,18 +124,23 @@ const cumulative = Generators.input(cumulativeInput);
 <!-------- Input Panels -------->
 <div class="grid grid-cols-4" style="margin:5px">
     <div class="card grid-colspan-1">
+        <h2 style="padding-bottom:15px">Carbon saved: </h2>
         ${carbonSavedInput}
+        <h2 style="padding-top:15px;padding-bottom:15px">Costs: </h2>
         ${costsInput}
         <hr>
+        <h2 style="padding-top:15px; padding-bottom:15px">Budgets: </h2>
         ${budgetToVisualiseInput}
         <hr>
+        <h2 style="padding-bottom:15px">Glyph mode: </h2>
         ${glyphModeInput}
         <hr>
-        ${gridSizeInput}
+        <h2 style="padding-bottom:15px">Grid Size: </h2>
+        <span>${gridSizeInput} </span>
         <hr>
-        ${cumulativeInput}
+        <h2 style="padding-bottom:15px">Cumulative? ${cumulativeInput}</h2>
     </div>
-    <div class="card glyphmaps grid-colspan-3" style="padding:8px">
+    <div class="card glyphmaps grid-colspan-3" style="padding:8px, height:100vh;">
      ${resize((width, height) => drawGlyphmaps({ width, height }))}
     </div>
 </div>
