@@ -14,7 +14,7 @@
 <link rel="modulepreload" href="./_observablehq/stdlib.js">
 <link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/statsbreaks@1.0.6/dist/index.min.js">
-<link rel="modulepreload" href="./_import/components/gridded-glyphmaps/index.min.7ebc4e68.js">
+<link rel="modulepreload" href="./_import/components/gridded-glyphmaps/index.min.733459fe.js">
 <link rel="modulepreload" href="./_import/components/helper.0f2b5756.js">
 <link rel="modulepreload" href="./_import/components/config.30fb7f3d.js">
 <link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
@@ -58,18 +58,24 @@
 import {define} from "./_observablehq/client.js";
 import {registerFile} from "./_observablehq/stdlib.js";
 
-registerFile("./data/cbe_scenarios_reformatted.csv", {"name":"./data/cbe_scenarios_reformatted.csv","mimeType":"text/csv","path":"./_file/data/cbe_scenarios_reformatted.cd82bfef.csv","lastModified":1715262907315});
+registerFile("./data/cbe_scenarios_reformatted.csv", {"name":"./data/cbe_scenarios_reformatted.csv","mimeType":"text/csv","path":"./_file/data/cbe_scenarios_reformatted.cd82bfef.csv","lastModified":1715300961553});
 
 define({id: "152502c1", outputs: ["d3","Mutable","statsbreaks","glyphMap","processDataCumulative","processData","colours","colourMapping"], body: async () => {
-const [d3, {Mutable}, statsbreaks, {glyphMap}, {processDataCumulative, processData}, {colours, colourMapping}] = await Promise.all([import("./_npm/d3@7.9.0/_esm.js"), import("./_observablehq/stdlib.js"), import("https://cdn.jsdelivr.net/npm/statsbreaks@1.0.6/dist/index.min.js"), import("./_import/components/gridded-glyphmaps/index.min.7ebc4e68.js"), import("./_import/components/helper.0f2b5756.js"), import("./_import/components/config.30fb7f3d.js")]);
+const [d3, {Mutable}, statsbreaks, {glyphMap}, {processDataCumulative, processData}, {colours, colourMapping}] = await Promise.all([import("./_npm/d3@7.9.0/_esm.js"), import("./_observablehq/stdlib.js"), import("https://cdn.jsdelivr.net/npm/statsbreaks@1.0.6/dist/index.min.js"), import("./_import/components/gridded-glyphmaps/index.min.733459fe.js"), import("./_import/components/helper.0f2b5756.js"), import("./_import/components/config.30fb7f3d.js")]);
 
 
 return {d3,Mutable,statsbreaks,glyphMap,processDataCumulative,processData,colours,colourMapping};
 }});
 
-define({id: "62af5524", inputs: ["FileAttachment"], outputs: ["griddedData"], body: (FileAttachment) => {
-const griddedData = FileAttachment("./data/cbe_scenarios_reformatted.csv").csv();
-return {griddedData};
+define({id: "bf4720db", inputs: ["FileAttachment"], outputs: ["griddedDataFile","griddedData"], body: (FileAttachment) => {
+const griddedDataFile = FileAttachment(
+  "./data/cbe_scenarios_reformatted.csv"
+).csv({
+  typed: true,
+});
+
+const griddedData = griddedDataFile.filter((d) => d.lat !== undefined);
+return {griddedDataFile,griddedData};
 }});
 
 define({id: "9372bd59", inputs: ["Inputs","Generators"], outputs: ["carbonSavedInput","carbonSaved","costsInput","costs","budgetToVisualiseInput","budgetToVisualise","glyphModeInput","glyphMode","gridSizeInput","gridSize","cumulativeInput","cumulative"], body: (Inputs,Generators) => {
@@ -167,17 +173,18 @@ resize((width, height) => drawGlyphmaps({ width, height }))
 ))
 }});
 
-define({id: "42c5a23b", inputs: ["glyphMap","griddedData","gridSize","appendRecordsAggrFn","postAggrFn","interactiveDrawFn","glyphMode","drawLegend"], outputs: ["drawGlyphmaps"], body: (glyphMap,griddedData,gridSize,appendRecordsAggrFn,postAggrFn,interactiveDrawFn,glyphMode,drawLegend) => {
+define({id: "a1f0aa78", inputs: ["glyphMap","griddedData","gridSize","appendRecordsAggrFn","postAggrFn","interactiveDrawFn","glyphMode","drawLegend"], outputs: ["drawGlyphmaps"], body: (glyphMap,griddedData,gridSize,appendRecordsAggrFn,postAggrFn,interactiveDrawFn,glyphMode,drawLegend) => {
 function drawGlyphmaps({ width, height } = {}) {
   return glyphMap({
     data: griddedData,
     getLocationFn: (row) => [row.lon, row.lat],
     cellSize: gridSize, //60, // setGridSize(),
-    // mapType: "CartoPositronNoLabel", //"CartoPositron",
+    mapType: "CartoPositron", //"CartoPositron",
     discretisationShape: "grid",
 
     width: width,
     height: height,
+    tileWidth: 150,
     initbb: [
       0.068638841385944, 52.1579417014909, 0.184552035598734, 52.2372295579635,
     ],
@@ -234,7 +241,7 @@ function drawFnStreams(cell, x, y, cellSize, ctx, global, panel) {
 return {drawFnStreams};
 }});
 
-define({id: "bb32aca9", inputs: ["d3","colourMapping"], outputs: ["drawAreaChart"], body: (d3,colourMapping) => {
+define({id: "00bb1eb2", inputs: ["d3","colourMapping"], outputs: ["drawAreaChart"], body: (d3,colourMapping) => {
 function drawAreaChart(
   ctx,
   centerX,
@@ -246,8 +253,6 @@ function drawAreaChart(
 ) {
   const drawWidth = cellSize - 2 * padding;
   const drawHeight = cellSize - 2 * padding;
-
-  // console.log("data", keysToVisualize);
 
   // Adjust the x scale to fit within the cell
   const xScale = d3
@@ -284,7 +289,7 @@ function drawAreaChart(
       .curve(curve);
 
     area.context(ctx)(s);
-    ctx.fillStyle = colourMapping[s.key]; //colours[s.index]; //`hsl(${(s.index / series.length) * 360}, 80%, 60%)`;
+    ctx.fillStyle = colourMapping[s.key];
     ctx.fill();
   });
 }
@@ -558,17 +563,16 @@ function drawStreamgraphMirror(
 return {drawStreamgraphMirror};
 }});
 
-define({id: "5a876208", inputs: ["glyphMode","drawGlyphmaps","interactiveDrawFn"], outputs: ["setglyphmode"], body: (glyphMode,drawGlyphmaps,interactiveDrawFn) => {
-const setglyphmode = () => {
-  glyphMode;
-  drawGlyphmaps().setGlyph({
-    drawFn: interactiveDrawFn(glyphMode),
-  });
-  //   drawGlyphmaps.setGlyph({
-  //     drawFn: interactiveDrawFn(glyphMode),
-  //   });
-};
-return {setglyphmode};
+define({id: "76e31239", body: () => {
+// const setglyphmode = () => {
+//   glyphMode;
+//   drawGlyphmaps().setGlyph({
+//     drawFn: interactiveDrawFn(glyphMode),
+//   });
+//   //   drawGlyphmaps.setGlyph({
+//   //     drawFn: interactiveDrawFn(glyphMode),
+//   //   });
+// };
 }});
 
 define({id: "eac29cab", inputs: ["budgetToVisualise","selectedParameters","drawLineChart","drawStreamgraph","drawAreachartStack","drawAreaChart","drawStreamgraphMirror"], outputs: ["interactiveDrawFn"], body: (budgetToVisualise,selectedParameters,drawLineChart,drawStreamgraph,drawAreachartStack,drawAreaChart,drawStreamgraphMirror) => {
@@ -719,7 +723,7 @@ return {drawLegend};
 <main id="observablehq-main" class="observablehq">
 <div id="cell-152502c1" class="observablehq observablehq--block"></div>
 <!-------- Data -------->
-<div id="cell-62af5524" class="observablehq observablehq--block"></div>
+<div id="cell-bf4720db" class="observablehq observablehq--block"></div>
 <!--------- Panels --------->
 <div id="cell-9372bd59" class="observablehq observablehq--block"></div>
 <!-------- Plots -------->
@@ -742,16 +746,16 @@ return {drawLegend};
     </div>
 </div>
 <!--------- Glyphmap Main Functions --------->
-<div id="cell-42c5a23b" class="observablehq observablehq--block"></div>
+<div id="cell-a1f0aa78" class="observablehq observablehq--block"></div>
 <!--------- Glyphs Drawing Functions --------->
 <div id="cell-6995becf" class="observablehq observablehq--block"></div>
-<div id="cell-bb32aca9" class="observablehq observablehq--block"></div>
+<div id="cell-00bb1eb2" class="observablehq observablehq--block"></div>
 <div id="cell-86cb36e7" class="observablehq observablehq--block"></div>
 <div id="cell-11670f03" class="observablehq observablehq--block"></div>
 <div id="cell-09db6ed8" class="observablehq observablehq--block"></div>
 <div id="cell-6c477c3c" class="observablehq observablehq--block"></div>
 <!--------- Glyphmaps Helper Functions --------->
-<div id="cell-5a876208" class="observablehq observablehq--block"></div>
+<div id="cell-76e31239" class="observablehq observablehq--block"></div>
 <div id="cell-eac29cab" class="observablehq observablehq--block"></div>
 <div id="cell-f8435c66" class="observablehq observablehq--block"></div>
 <div id="cell-9349a2dd" class="observablehq observablehq--block"></div>
