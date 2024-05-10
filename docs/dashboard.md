@@ -18,7 +18,13 @@ import { colours, colourMapping } from "./components/config.js";
 <!-------- Data -------->
 
 ```js
-const griddedData = FileAttachment("data/cbe_scenarios_reformatted.csv").csv();
+const griddedDataFile = FileAttachment(
+  "data/cbe_scenarios_reformatted.csv"
+).csv({
+  typed: true,
+});
+
+const griddedData = griddedDataFile.filter((d) => d.lat !== undefined);
 ```
 
 <!--------- Panels --------->
@@ -104,11 +110,12 @@ function drawGlyphmaps({ width, height } = {}) {
     data: griddedData,
     getLocationFn: (row) => [row.lon, row.lat],
     cellSize: gridSize, //60, // setGridSize(),
-    // mapType: "CartoPositronNoLabel", //"CartoPositron",
+    mapType: "CartoPositron", //"CartoPositron",
     discretisationShape: "grid",
 
     width: width,
     height: height,
+    tileWidth: 150,
     initbb: [
       0.068638841385944, 52.1579417014909, 0.184552035598734, 52.2372295579635,
     ],
@@ -178,8 +185,6 @@ function drawAreaChart(
   const drawWidth = cellSize - 2 * padding;
   const drawHeight = cellSize - 2 * padding;
 
-  // console.log("data", keysToVisualize);
-
   // Adjust the x scale to fit within the cell
   const xScale = d3
     .scaleTime()
@@ -215,7 +220,7 @@ function drawAreaChart(
       .curve(curve);
 
     area.context(ctx)(s);
-    ctx.fillStyle = colourMapping[s.key]; //colours[s.index]; //`hsl(${(s.index / series.length) * 360}, 80%, 60%)`;
+    ctx.fillStyle = colourMapping[s.key];
     ctx.fill();
   });
 }
@@ -487,15 +492,15 @@ function drawStreamgraphMirror(
 <!--------- Glyphmaps Helper Functions --------->
 
 ```js
-const setglyphmode = () => {
-  glyphMode;
-  drawGlyphmaps().setGlyph({
-    drawFn: interactiveDrawFn(glyphMode),
-  });
-  //   drawGlyphmaps.setGlyph({
-  //     drawFn: interactiveDrawFn(glyphMode),
-  //   });
-};
+// const setglyphmode = () => {
+//   glyphMode;
+//   drawGlyphmaps().setGlyph({
+//     drawFn: interactiveDrawFn(glyphMode),
+//   });
+//   //   drawGlyphmaps.setGlyph({
+//   //     drawFn: interactiveDrawFn(glyphMode),
+//   //   });
+// };
 ```
 
 ```js
