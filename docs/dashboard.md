@@ -16,17 +16,17 @@ import { colours, colourMapping } from "./components/config.js";
 ```
 
 <!-------- Stylesheets -------->
-<link
+<!-- <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
->
+> -->
 
 <style>
-/* body, html {
+body, html {
   height: 100%;
   margin: 0;
   padding: 0;
-} */
+}
 </style>
 
 <!-------- Data -------->
@@ -140,7 +140,7 @@ const cumulative = Generators.input(cumulativeInput);
         <hr>
         <h2 style="padding-bottom:15px">Cumulative? ${cumulativeInput}</h2>
     </div>
-    <div class="card glyphmaps grid-colspan-3" style="padding:8px, height:100vh;">
+    <div class="card glyphmaps grid-colspan-3" style="padding:8px; height:92vh;">
      ${resize((width, height) => drawGlyphmaps({ width, height }))}
     </div>
 </div>
