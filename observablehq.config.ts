@@ -17,7 +17,7 @@ export default {
   ],
 
   // Some additional configuration options and their defaults:
-  theme: "dark", // try "light", "dark", "slate", etc.
+  // theme: "dark", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
   footer: "", // what to show in the footer (HTML)
   // toc: true, // whether to show the table of contents
