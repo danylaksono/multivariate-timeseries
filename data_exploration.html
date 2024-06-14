@@ -4,10 +4,10 @@
 <title>Data Exploration | Multivariate Timeseries</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-near-midnight.css">
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
 <link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-near-midnight.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
 <link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
 <link rel="modulepreload" href="./_observablehq/client.js">
 <link rel="modulepreload" href="./_observablehq/runtime.js">
@@ -15,7 +15,7 @@
 <link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/duckdb.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.14/_esm.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.15/_esm.js">
 <link rel="modulepreload" href="./_npm/@duckdb/duckdb-wasm@1.28.0/_esm.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
@@ -52,7 +52,7 @@
 <link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
 <link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
 <link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/_esm.js">
-<link rel="modulepreload" href="./_npm/tslib@2.6.2/_esm.js">
+<link rel="modulepreload" href="./_npm/tslib@2.6.3/_esm.js">
 <link rel="modulepreload" href="./_npm/flatbuffers@24.3.25/_esm.js">
 <link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
 <link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
@@ -63,8 +63,8 @@ import {define} from "./_observablehq/client.js";
 import {registerFile, FileAttachment} from "./_observablehq/stdlib.js";
 import {registerTable} from "./_observablehq/stdlib/duckdb.js";
 
-registerFile("./data/data_processing.csv", {"name":"./data/data_processing.csv","mimeType":"text/csv","path":"./_file/data/data_processing.e3b0c442.csv","lastModified":1715938819995});
-registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1715938803431});
+registerFile("./data/data_processing.csv", {"name":"./data/data_processing.csv","mimeType":"text/csv","path":"./_file/data/data_processing.e3b0c442.csv","lastModified":1718393843046});
+registerFile("./data/formatted_cbe_scenarios.csv", {"name":"./data/formatted_cbe_scenarios.csv","mimeType":"text/csv","path":"./_file/data/formatted_cbe_scenarios.96cb640f.csv","lastModified":1718393822594});
 registerTable("scenariosdb", FileAttachment("./data/formatted_cbe_scenarios.csv"));
 
 define({id: "7ca53046", inputs: ["sql"], outputs: ["alldata"], body: async (sql) => {

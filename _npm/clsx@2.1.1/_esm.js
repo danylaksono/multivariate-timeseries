@@ -1,6 +1,6 @@
 /**
  * Bundled by jsDelivr using Rollup v2.79.1 and Terser v5.19.2.
- * Original file: /npm/clsx@2.1.0/dist/clsx.mjs
+ * Original file: /npm/clsx@2.1.1/dist/clsx.mjs
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
  */
