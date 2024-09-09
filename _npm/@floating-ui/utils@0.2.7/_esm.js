@@ -1,6 +1,6 @@
 /**
  * Bundled by jsDelivr using Rollup v2.79.1 and Terser v5.19.2.
- * Original file: /npm/@floating-ui/utils@0.2.2/dist/floating-ui.utils.mjs
+ * Original file: /npm/@floating-ui/utils@0.2.7/dist/floating-ui.utils.mjs
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
  */
