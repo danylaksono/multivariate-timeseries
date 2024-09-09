@@ -60,13 +60,6 @@ const n = html`<input type="range" step="10" min="10" max="150" />`;
 const nn = Generators.input(n);
 ```
 
-```js
-// setNN(nn);
-// html`<div class="card" style="display: grid; gap: 0.5rem;">
-//   <div>Enter your name: ${n}</div>
-//   <div>Hi <b>${nnvalue}</b>!</div>
-// </div>`
-```
 
 ```js
 const carbonSavedInput = Inputs.checkbox(
@@ -79,7 +72,7 @@ const carbonSavedInput = Inputs.checkbox(
 const carbonSaved = Generators.input(carbonSavedInput);
 
 const costsInput = Inputs.checkbox(
-  ["labour_cost", "material_cost", "total_cost"],
+  ["labour_cost", "material_cost"],
   {
     // label: "Costs",
   }
@@ -117,6 +110,9 @@ const gridSize = Generators.input(gridSizeInput);
 
 const cumulativeInput = Inputs.toggle({ value: false });
 const cumulative = Generators.input(cumulativeInput);
+
+const normaliseInput = Inputs.toggle({ value: false });
+const normalise = Generators.input(cumulativeInput);
 ```
 
 <!-------- Plots -------->
@@ -128,13 +124,11 @@ const cumulative = Generators.input(cumulativeInput);
         ${carbonSavedInput}
         <h2 style="padding-top:15px;padding-bottom:15px">Costs: </h2>
         ${costsInput}
-        <hr>
         <h2 style="padding-top:15px; padding-bottom:15px">Budgets: </h2>
         ${budgetToVisualiseInput}
         <hr>
         <h2 style="padding-bottom:15px">Glyph mode: </h2>
         ${glyphModeInput}
-        <hr>
         <h2 style="padding-bottom:15px">Grid Size: </h2>
         <span>${gridSizeInput} </span>
         <hr>
